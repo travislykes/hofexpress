@@ -20,3 +20,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/about-us', 'PageController@about_us')->name('about-page');
+
+//Admin Routes
+
+Route::get('/admin/dashboard', 'AdminController@index')->name('admin.dashboard');
+
+Route::get('/admin/user-types', 'UserTypeController@create')->name('admin.user.types');
+Route::post('/admin/user-types/store', 'UserTypeController@store')->name('admin.user.types.store');
+Route::delete('/admin/user-types/delete/{userType}', 'UserTypeController@destroy')->name('admin.user.type.delete');

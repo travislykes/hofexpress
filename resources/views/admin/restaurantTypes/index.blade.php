@@ -73,16 +73,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($restaurantTypes as $usertype)
+                                @forelse($restaurantTypes as $restaurantType)
                                 <tr>
-                                    <td>{{ $usertype->name ?? '' }}</td>
-                                    <td>{{ $usertype->description ?? '' }}</td>
+                                    <td>{{ $restaurantType->name ?? '' }}</td>
+                                    <td>{{ $restaurantType->description ?? '' }}</td>
                                     <td>
                                         <a href="javascript:void(0)" class="text-primary" data-toggle="tooltip" data-original-title="Edit"><i class="ti-pencil" aria-hidden="true"></i></a>
-                                        <form action="{{ route('admin.user.type.delete',[$usertype->id])}}" method="POST">
+                                        <form action="{{ route('admin.restaurant.type.delete',[$restaurantType->id])}}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button onclick=" return confirm('Delete User Type {{ $usertype->name }} ?')" class="text-danger" data-toggle="tooltip" data-original-title="Delete"  class="btn btn-sm btn-danger ml-2"><i class="ti-trash" aria-hidden="true"></i></button>
+                                        <button onclick=" return confirm('Delete Restaurant Type {{ $restaurantType->name }} ?')" class="text-danger" data-toggle="tooltip" data-original-title="Delete"  class="btn btn-sm btn-danger ml-2"><i class="ti-trash" aria-hidden="true"></i></button>
                                         </form>
                                         
                                     </td>

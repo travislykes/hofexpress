@@ -12,8 +12,8 @@
             <div class="col-12">
                 <div class="box">
                     <div class="box-header with-border">
-                        <h4 class="box-title">Create User Type</h4>
-                        <h6 class="box-subtitle">Roles Assigned On Site <a class="text-warning" href="#">Hof Express </a></h6>
+                        <h4 class="box-title">Create Restaurant</h4>
+                        <h6 class="box-subtitle">Add a new Restaurant to  <a class="text-warning" href="#">Hof Express </a></h6>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -59,8 +59,8 @@
         <div class="col-xl-8 col-lg-8 col-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <h4 class="box-title">Supported User Types</h4>
-                    <h6 class="box-subtitle">List of all created user types</h6>
+                    <h4 class="box-title">All Restaurants</h4>
+                    <h6 class="box-subtitle">List of all created Restaurants</h6>
                 </div>
                 <div class="box-body p-15">
                     <div class="table-responsive">

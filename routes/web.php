@@ -35,4 +35,4 @@ Route::get('/admin/restaurants','Admin\RestaurantController@index')->name('admin
 
 Route::get('/admin/restaurant-types','Admin\RestaurantTypeController@index')->name('admin.restaurant.types');
 Route::post('/admin/restaurant-types/store', 'Admin\RestaurantTypeController@store')->name('admin.restaurant.types.store');
-Route::delete('/admin/restaurant-types/delete/{userType}', 'Admin\RestaurantTypeController@destroy')->name('admin.restaurant.type.delete');
+Route::delete('/admin/restaurant-types/delete/{restaurantType}', 'Admin\RestaurantTypeController@destroy')->name('admin.restaurant.type.delete');

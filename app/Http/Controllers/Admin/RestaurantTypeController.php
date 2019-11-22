@@ -89,6 +89,8 @@ class RestaurantTypeController extends Controller
      */
     public function destroy(RestaurantType $restaurantType)
     {
-        //
+        $restaurantType->delete();
+        session()->flash('message', 'Restaurant Type Deleted successfully!');
+        return redirect()->route('admin.restaurant.types');
     }
 }

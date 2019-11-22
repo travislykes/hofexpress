@@ -19,7 +19,7 @@
                     <div class="box-body">
                         <div class="row">
                             <div class="col">
-                                <form novalidate method="POST" action="{{ route('admin.user.types.store') }}">
+                                <form novalidate method="POST" action="{{ route('admin.restaurant.store') }}">
                                     @csrf
                                     <div class="row">
                                         <div class="col-12">
@@ -36,6 +36,29 @@
                                                 </div>
                                                 
                                             </div>
+                                            <div class="form-group">
+                                                <h5>Location</h5>
+                                                <div class="controls">
+                                                    <input type="text" name="location" class="form-control" placeholder="Location" required>
+                                                </div>
+                                                
+                                            </div>
+
+                                            <div class="form-group">
+                                                    <h5>Restaurant Type</h5>
+                                                    <div class="controls">
+                                                        <select  name="restaurant_type_id" class="form-control" required>
+                                                            @forelse ($restaurantTypes as $item)
+                                                        <option value="{{ $item->id}}">{{ $item->name}}</option>  
+                                                            @empty
+                                                            <option value="">No record found</option>  
+                                                            @endforelse
+                                                            
+                                                        </select>
+                                                    </div>
+                                                    
+                                                </div>
+                                               
                                            
                                         </div>
                                         
@@ -60,7 +83,7 @@
             <div class="box">
                 <div class="box-header with-border">
                     <h4 class="box-title">All Restaurants</h4>
-                    <h6 class="box-subtitle">List of all created Restaurants</h6>
+                    <h6 class="box-subtitle">List of all created Restaurants{{ $restaurants ?? '' }}</h6>
                 </div>
                 <div class="box-body p-15">
                     <div class="table-responsive">
@@ -73,16 +96,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($restaurants as $usertype)
+                                @forelse($restaurants as $restaurant)
                                 <tr>
-                                    <td>{{ $usertype->name ?? '' }}</td>
-                                    <td>{{ $usertype->description ?? '' }}</td>
+                                    <td>{{ $restaurant ?? '' }}</td>
+                                    <td>{{ $restaurant->description ?? '' }}</td>
                                     <td>
-                                        <a href="javascript:void(0)" class="text-primary" data-toggle="tooltip" data-original-title="Edit"><i class="ti-pencil" aria-hidden="true"></i></a>
-                                        <form action="{{ route('admin.user.type.delete',[$usertype->id])}}" method="POST">
+                                        <a href="{{ route('admin.restaurant.edit',[$restaurant->id]) }}" class="text-primary" data-toggle="tooltip" data-original-title="Edit"><i class="ti-pencil" aria-hidden="true"></i></a>
+                                        
+                                        <form action="{{ route('admin.user.type.delete',[$restaurant->id])}}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button onclick=" return confirm('Delete User Type {{ $usertype->name }} ?')" class="text-danger" data-toggle="tooltip" data-original-title="Delete"  class="btn btn-sm btn-danger ml-2"><i class="ti-trash" aria-hidden="true"></i></button>
+                                        <button onclick=" return confirm('Delete User Type {{ $restaurant->name }} ?')" class="text-danger" data-toggle="tooltip" data-original-title="Delete"  class="btn btn-sm btn-danger ml-2"><i class="ti-trash" aria-hidden="true"></i></button>
                                         </form>
                                         
                                     </td>

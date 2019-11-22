@@ -18,17 +18,8 @@ class RestaurantController extends Controller
         $page_title = 'Restaurant Manager';
         $restaurants = Restaurant::all();
         $restaurantTypes = RestaurantType::all();
+        // dd($restaurants);
         return view('admin.restaurants.index', compact('restaurants','page_title','restaurantTypes'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -39,7 +30,15 @@ class RestaurantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $restaurant = new Restaurant;
+
+        $restaurant->name = $request->name;
+        $restaurant->description = $request->description;
+        $restaurant->location = $request->location;
+        $restaurant->restaurant_type_id = $request->restaurant_type_id;
+        $restaurant->save();
+        session()->flash('message', 'Restaurant Created successfully!');
+        return redirect()->route('admin.restaurants');
     }
 
     /**
@@ -61,7 +60,11 @@ class RestaurantController extends Controller
      */
     public function edit(Restaurant $restaurant)
     {
-        //
+        $page_title = 'Restaurant Manager';
+        $restaurants = Restaurant::all();
+        $restaurantTypes = RestaurantType::all();
+
+        return view('admin.restaurants.edit', compact('restaurants','page_title','restaurantTypes','restaurant'));
     }
 
     /**
@@ -73,7 +76,13 @@ class RestaurantController extends Controller
      */
     public function update(Request $request, Restaurant $restaurant)
     {
-        //
+        $restaurant->name = $request->name;
+        $restaurant->description = $request->description;
+        $restaurant->location = $request->location;
+        $restaurant->restaurant_type_id = $request->restaurant_type_id;
+        $restaurant->update();
+        session()->flash('message', 'Updated Created successfully!');
+        return redirect()->route('admin.restaurants');
     }
 
     /**
@@ -84,6 +93,8 @@ class RestaurantController extends Controller
      */
     public function destroy(Restaurant $restaurant)
     {
-        //
+        $restaurant->delete();
+        session()->flash('message', 'Restaurant Deleted successfully!');
+        return redirect()->route('admin.user.types');
     }
 }

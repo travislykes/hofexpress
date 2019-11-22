@@ -31,6 +31,9 @@ Route::delete('/admin/user-types/delete/{userType}', 'UserTypeController@destroy
 
 //Admin Restaurant Management Routes
 Route::get('/admin/restaurants','Admin\RestaurantController@index')->name('admin.restaurants');
+Route::get('/admin/restaurants/edit/{restaurant}','Admin\RestaurantController@edit')->name('admin.restaurant.edit');
+Route::post('/admin/restaurant/store','Admin\RestaurantController@store')->name('admin.restaurant.store');
+
 
 
 Route::get('/admin/restaurant-types','Admin\RestaurantTypeController@index')->name('admin.restaurant.types');

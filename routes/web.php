@@ -28,3 +28,11 @@ Route::get('/admin/dashboard', 'AdminController@index')->name('admin.dashboard')
 Route::get('/admin/user-types', 'UserTypeController@create')->name('admin.user.types');
 Route::post('/admin/user-types/store', 'UserTypeController@store')->name('admin.user.types.store');
 Route::delete('/admin/user-types/delete/{userType}', 'UserTypeController@destroy')->name('admin.user.type.delete');
+
+//Admin Restaurant Management Routes
+Route::get('/admin/restaurants','Admin\RestaurantController@index')->name('admin.restaurants');
+
+
+Route::get('/admin/restaurant-types','Admin\RestaurantTypeController@index')->name('admin.restaurant.types');
+Route::post('/admin/restaurant-types/store', 'Admin\RestaurantTypeController@store')->name('admin.restaurant.types.store');
+Route::delete('/admin/restaurant-types/delete/{userType}', 'Admin\RestaurantTypeController@destroy')->name('admin.restaurant.type.delete');

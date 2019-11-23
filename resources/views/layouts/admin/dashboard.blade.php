@@ -26,7 +26,7 @@
 	@yield('styles')
 	<style>
 		.bg-gradient-purple, .theme-purple .bg-gradient-purple, .theme-purple .art-bg, .theme-purple.fixed .main-header, .theme-purple.onlyheader .main-header {
-    background-image: url(../../admin/images/color-plate/theme-oceansky-dark.jpg);
+    background-image: url( {{ asset('admin/images/color-plate/theme-oceansky-dark.jpg') }});
 }
 		</style>
 
@@ -95,7 +95,7 @@
 
   @include('layouts.admin.shared.footer')
   <!-- Control Sidebar -->
-  <aside class="control-sidebar">
+  {{-- <aside class="control-sidebar">
 	  
 	<div class="rpanel-title"><span class="pull-right btn btn-circle btn-danger"><i class="ion ion-close text-white" data-toggle="control-sidebar"></i></span> </div>  <!-- Create the tabs -->
     <ul class="nav nav-tabs control-sidebar-tabs">
@@ -344,7 +344,7 @@
       </div>
       <!-- /.tab-pane -->
     </div>
-  </aside>
+  </aside> --}}
   <!-- /.control-sidebar -->
   
   <!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->

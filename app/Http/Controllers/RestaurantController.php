@@ -46,7 +46,8 @@ class RestaurantController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
-        //
+        $page_title = ucfirst($restaurant->name);
+        return view('restaurant.details', compact('page_title','restaurant','page_title'));
     }
 
     /**

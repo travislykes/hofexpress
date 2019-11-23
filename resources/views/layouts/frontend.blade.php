@@ -125,7 +125,7 @@
                         <li><a href="#0"><i class="icon-youtube-play"></i></a></li>
                     </ul>
                     <p>
-                        © Quick Food 2015
+                        © Hof Express {{ date('Y') }}
                     </p>
                 </div>
             </div>

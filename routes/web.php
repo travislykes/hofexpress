@@ -37,7 +37,22 @@ Route::get('/admin/restaurants/edit/{restaurant}','Admin\RestaurantController@ed
 Route::post('/admin/restaurant/store','Admin\RestaurantController@store')->name('admin.restaurant.store');
 
 
-
+//Restaurant Types
 Route::get('/admin/restaurant-types','Admin\RestaurantTypeController@index')->name('admin.restaurant.types');
 Route::post('/admin/restaurant-types/store', 'Admin\RestaurantTypeController@store')->name('admin.restaurant.types.store');
 Route::delete('/admin/restaurant-types/delete/{restaurantType}', 'Admin\RestaurantTypeController@destroy')->name('admin.restaurant.type.delete');
+
+//Payment Types
+Route::get('/admin/payment-types','Admin\PaymentTypeController@index')->name('admin.payment.types');
+Route::post('/admin/payment-types/store', 'Admin\PaymentTypeController@store')->name('admin.payment.types.store');
+Route::delete('/admin/payment-types/delete/{paymentType}', 'Admin\PaymentTypeController@destroy')->name('admin.payment.type.delete');
+
+
+//User Mgmt
+Route::get('/admin/all-users', 'Admin\UserController@index')->name('admin.all.users');
+Route::get('/admin/all-admin', 'Admin\UserController@admins')->name('admin.all.admins');
+Route::get('/admin/users/customers', 'Admin\UserController@customers')->name('admin.all.customers');
+Route::get('/admin/users/restaurant-managers', 'Admin\UserController@manager')->name('admin.all.managers');
+
+Route::post('/admin/admin/store', 'Admin\UserController@store')->name('new.admin.store');
+Route::delete('/admin/user/delete/{restaurantType}', 'Admin\UserController@destroy')->name('admin.user.delete');

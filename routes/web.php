@@ -24,12 +24,12 @@ Route::get('/about-us', 'PageController@about_us')->name('about-page');
 Route::get('/restaurant/view/{restaurant}', 'RestaurantController@show')->name('restaurant.show');
 Route::get('/all-restaurants', 'RestaurantController@index')->name('all.restaurants');
 //Frontend Regster Restaurant Auth\RegisterController@save_frontend_restaurant 
-Route::get('/submit-restaurant','Auth\RegisterController@register_restaurant')->name('submit.restaurant');
-Route::post('/save-restaurant','Auth\RegisterController@save_frontend_restaurant')->name('save.restaurant');
+Route::get('/submit-restaurant','PageController@register_restaurant')->name('submit.restaurant');
+Route::post('/save-restaurant','PageController@save_frontend_restaurant')->name('save.restaurant');
 
 //Frontend Regster Delivery Man 
-Route::get('/rider-signup','Auth\RegisterController@rider')->name('view.rider.form');
-Route::post('/save-rider','Auth\RegisterController@save_rider')->name('save.rider');
+Route::get('/rider-signup','PageController@rider')->name('view.rider.form');
+Route::post('/save-rider','PageController@save_rider')->name('save.rider');
 
 //Admin Routes
 Route::get('/admin/dashboard', 'AdminController@index')->name('admin.dashboard');

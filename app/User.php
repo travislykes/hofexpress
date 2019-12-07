@@ -22,7 +22,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'firstname','lastname','email', 'password','user_type_id',
+        'username', 'firstname','lastname','email', 'password','user_type_id','restaurant_id','ownership_verified'
     ];
 
     /**
@@ -46,5 +46,10 @@ class User extends Authenticatable
     public function userType()
 	{
 		return $this->belongsTo('App\UserType', 'user_type_id');
+    }
+    
+    public function restaurant()
+	{
+		return $this->belongsTo('App\Restaurant', 'restaurant_id');
 	}
 }

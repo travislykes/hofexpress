@@ -7,6 +7,14 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\RestaurantType;
+use App\Services\Slug;
+use Carbon\Carbon;
+use Webpatser\Uuid\Uuid;
+use App\UserType;
+use App\Restaurant;
+use App\Profile;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -66,13 +74,72 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $userType = UserType::where('name','Customer')->first();
         return User::create([
             'firstname' => $data['firstname'],
             'lastname' => $data['lastname'],
             'username' => $data['username'],
             'email' => $data['email'],
-            // 'user_type_id' => "",
+            'user_type_id' => $userType->id,
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    public function register_restaurant(){
+        $page_title = 'Submit Your Restaurant';
+        $restaurant_types = RestaurantType::all();
+        return view('submit-restaurant', compact('page_title','restaurant_types'));
+    }
+
+    public function save_frontend_restaurant(Request $request){
+
+        //Create new User set to not verified
+        $validator = Validator::make($request->all(), [
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'email' => 'string|email|max:255|unique:users',
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('submit.restaurant')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+         //Create new Restaurant set to not verified
+         $restaurant = new Restaurant;
+         $restaurant->name = $request->restaurant_name;
+         $restaurant->description = $request->restaurant_description;
+         $restaurant->location = $request->restaurant_location;
+         $restaurant->restaurant_type_id = $request->restaurant_type_id;
+         $restaurant->save();
+
+        //find userType
+        $userType = UserType::where('name','Manager')->first();
+        $user = new User;
+        $user->firstname = $request->firstname;
+        $user->lastname = $request->lastname;
+        $user->email = $request->email;
+        //create user name with Slug function
+        $slug = new Slug;
+        $name = $request->firstname.' '.$request->lastname.''.rand(100,999);
+        $username = $slug->createUsername($name);
+        $user->username = $username;
+        $user->user_type_id = $userType->id;
+        $user->password = Hash::make($request->password);
+        $user->restaurant_id = $restaurant->id;
+        $user->save();
+
+         //create user profile
+         $profile = new Profile;
+         
+         $profile->phonenumber = $request->phonenumber;
+         $profile->user_id = $user->id;
+         $profile->save();
+       
+        session()->flash('message', 'Hello'.' '.$user->firstname);
+        return redirect()->route('submit.restaurant');
     }
 }

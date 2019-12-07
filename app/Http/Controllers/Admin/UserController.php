@@ -150,4 +150,6 @@ class UserController extends Controller
         session()->flash('message', 'User Deleted successfully!');
         return redirect()->route('admin.user.types');
     }
+
+   
 }

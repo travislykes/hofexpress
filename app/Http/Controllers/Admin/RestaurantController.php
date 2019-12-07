@@ -65,6 +65,7 @@ class RestaurantController extends Controller
 
         $restaurant->name = $request->name;
         $restaurant->description = $request->description;
+        $restaurant->verified = $request->verified;
         $restaurant->location = $request->location;
         $restaurant->restaurant_type_id = $request->restaurant_type_id;
         $restaurant->save();
@@ -110,6 +111,7 @@ class RestaurantController extends Controller
         $restaurant->name = $request->name;
         $restaurant->description = $request->description;
         $restaurant->location = $request->location;
+        $restaurant->verified = $request->verified;
         $restaurant->restaurant_type_id = $request->restaurant_type_id;
         $restaurant->update();
         session()->flash('message', 'Updated Created successfully!');

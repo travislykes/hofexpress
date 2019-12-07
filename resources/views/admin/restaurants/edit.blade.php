@@ -59,6 +59,17 @@
                                                             </select>
                                                         </div>
                                                         
+                                                </div>
+                                                <div class="form-group">
+                                                        <h5>Verfied</h5>
+                                                        <div class="controls">
+                                                            <select name="verified" class="form-control" required>
+                                                               
+                                                                <option value="no" @if($restaurant->verified == 'no'){{ 'selected' }} @endif>No</option>
+                                                               <option value="yes"  @if($restaurant->verified == 'yes'){{ 'selected' }} @endif>Yes</option>
+                                                             </select>
+                                                        </div>
+        
                                                     </div>
                                                    
                                                

@@ -59,6 +59,17 @@
 
                                             </div>
                                             <div class="form-group">
+                                                    <h5>Verfied</h5>
+                                                    <div class="controls">
+                                                        <select name="verified" class="form-control" required>
+                                                           
+                                                            <option value="no">No</option>
+                                                           <option value="yes">Yes</option>
+                                                         </select>
+                                                    </div>
+    
+                                                </div>
+                                            <div class="form-group">
                                                 <h5>Restaurant Logo</h5>
                                                 <div class="controls">
                                                     <input type="file" name="logo" class="form-control">
@@ -104,6 +115,7 @@
                                             <th>Name</th>
                                             <th>Logo</th>
                                             <th>Location</th>
+                                            <th>Verified</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -113,6 +125,7 @@
                                             <td>{{ $restaurant->name ?? '' }}</td>
                                             <td><div><img class="thumbnail" src="{{ asset('restaurant/logos') }}/{{ $restaurant->logo ?? '' }}" alt="{{ $restaurant->logo ?? '' }}" width="40"></div></td>
                                             <td>{{ $restaurant->location ?? '' }}</td>
+                                            <td>{{ ucfirst($restaurant->verified) ?? '' }}</td>
                                             <td>
                                                 
                                                     <a href="{{ route('restaurant.show',[$restaurant->id]) }}" class="text-success" data-toggle="tooltip" data-original-title="View"><i class="ti-eye" aria-hidden="true"></i></a>

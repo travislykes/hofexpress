@@ -23,9 +23,17 @@ Route::get('/about-us', 'PageController@about_us')->name('about-page');
 
 Route::get('/restaurant/view/{restaurant}', 'RestaurantController@show')->name('restaurant.show');
 Route::get('/all-restaurants', 'RestaurantController@index')->name('all.restaurants');
+
 //Frontend Regster Restaurant Auth\RegisterController@save_frontend_restaurant 
 Route::get('/submit-restaurant','PageController@register_restaurant')->name('submit.restaurant');
 Route::post('/save-restaurant','PageController@save_frontend_restaurant')->name('save.restaurant');
+
+//Manager Routes
+Route::get('/my-restaurant/menus','MenuController@index')->name('my.menus');
+Route::post('/save-menu','MenuController@store')->name('save.menu');
+Route::get('/my-restaurant/menus/{menu}','MenuController@edit')->name('edit.menu');
+Route::put('/update-menu/{menu}','MenuController@update')->name('update.menu');
+Route::delete('/delete-menu/{menu}','MenuController@destroy')->name('delete.menu');
 
 //Frontend Regster Delivery Man 
 Route::get('/rider-signup','PageController@rider')->name('view.rider.form');

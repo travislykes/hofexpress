@@ -16,21 +16,17 @@
                 <a href="#" class="open_close" id="close_in"><i class="icon_close"></i></a>
                  <ul>
                  <li><a href="{{ route('index') }}">Home</a></li>
-                    <li class="submenu">
-                    <a href="javascript:void(0);" class="show-submenu">Restaurants<i class="icon-down-open-mini"></i></a>
-                    <ul>
-                        <li><a href="list_page.html">Row listing</a></li>
-                        <li><a href="grid_list.html">Grid listing</a></li>
-                        <li><a href="map_listing.html">Map listing</a></li>
-                        <li><a href="detail_page.html">Restaurant Menu</a></li>
-                        <li><a href="submit_restaurant.html">Submit Restaurant</a></li>
-                        <li><a href="cart.html">Order step 1</a></li>
-                        <li><a href="cart_2.html">Order step 2</a></li>
-                        <li><a href="cart_3.html">Order step 3</a></li>
-                        <li><a href="cart_datepicker.html">Order Date/Time picker</a></li>
-                    </ul>
+                    <li>
+                    <a href="{{ route('all.restaurants') }}" class="">Restaurants</a>
                     </li>
-                    <li><a href="about.html">About us</a></li>
+                    <li class="submenu">
+                        <a href="javascript:void(0);" class="show-submenu">Work With Us<i class="icon-down-open-mini"></i></a>
+                        <ul>
+                            <li><a href="{{ route('submit.restaurant') }}">Register Restaurant</a></li>
+                            <li><a href="{{ route('view.rider.form') }}">Work As A Rider</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{{ route('about-page') }}">About us</a></li>
                     
                    
                     <li><a href="#0" data-toggle="modal" data-target="#register">Register</a></li>

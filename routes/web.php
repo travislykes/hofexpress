@@ -22,7 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/about-us', 'PageController@about_us')->name('about-page');
 
 Route::get('/restaurant/view/{restaurant}', 'RestaurantController@show')->name('restaurant.show');
-
+Route::get('/all-restaurants', 'RestaurantController@index')->name('all.restaurants');
 //Frontend Regster Restaurant Auth\RegisterController@save_frontend_restaurant 
 Route::get('/submit-restaurant','Auth\RegisterController@register_restaurant')->name('submit.restaurant');
 Route::post('/save-restaurant','Auth\RegisterController@save_frontend_restaurant')->name('save.restaurant');
@@ -32,7 +32,6 @@ Route::get('/rider-signup','Auth\RegisterController@rider')->name('view.rider.fo
 Route::post('/save-rider','Auth\RegisterController@save_rider')->name('save.rider');
 
 //Admin Routes
-
 Route::get('/admin/dashboard', 'AdminController@index')->name('admin.dashboard');
 
 Route::get('/admin/user-types', 'UserTypeController@create')->name('admin.user.types');

@@ -15,7 +15,7 @@ use App\UserType;
 use App\Restaurant;
 use App\Profile;
 use Illuminate\Http\Request;
-
+use App\Rider;
 class RegisterController extends Controller
 {
     /*
@@ -141,5 +141,31 @@ class RegisterController extends Controller
        
         session()->flash('message', 'Hello'.' '.$user->firstname);
         return redirect()->route('submit.restaurant');
+    }
+
+    //Delivery Man functions
+
+    public function rider(){
+        $page_title = 'Work With Us';
+        return view('rider-signup', compact('page_title'));
+    }
+
+    public function save_rider(Request $request){
+        
+        //Create new Rider
+        $rider = new Rider;
+        $rider->firstname = $request->firstname;
+        $rider->lastname = $request->lastname;
+        $rider->email = $request->email;
+        $rider->phonenumber = $request->phonenumber;
+        $rider->student = $request->student;
+        $rider->motor = $request->motor;
+        $rider->license = $request->license;
+        $rider->mobile = $request->mobile;
+        
+        $rider->save();
+
+        session()->flash('message', 'Hello'.' '.$rider->firstname);
+        return redirect()->route('view.rider.form');
     }
 }

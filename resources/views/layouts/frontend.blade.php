@@ -26,6 +26,7 @@
      <!-- SPECIFIC CSS -->
      <link href="{{ asset('css/morphext.css') }}" rel="stylesheet">
 
+     @yield('styles')
     <!--[if lt IE 9]>
       <script src="js/html5shiv.min.js"></script>
       <script src="js/respond.min.js"></script>
@@ -162,6 +163,6 @@ $("#js-rotating").Morphext({
     }
 });
 </script>
-
+@yield('scripts')
 </body>
 </html>

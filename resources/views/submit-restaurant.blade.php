@@ -1,5 +1,8 @@
 @extends('layouts.frontend')
 
+@section('styles')
+<link href="{{ asset('css/skins/square/grey.css') }}" rel="stylesheet">
+@endsection
 @section('content')
 <section class="parallax-window" id="short" data-parallax="scroll" data-image-src="img/sub_header_cart.jpg" data-natural-width="1400" data-natural-height="350">
     <div id="subheader">

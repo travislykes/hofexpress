@@ -62,6 +62,11 @@ Route::get('/admin/payment-types','Admin\PaymentTypeController@index')->name('ad
 Route::post('/admin/payment-types/store', 'Admin\PaymentTypeController@store')->name('admin.payment.types.store');
 Route::delete('/admin/payment-types/delete/{paymentType}', 'Admin\PaymentTypeController@destroy')->name('admin.payment.type.delete');
 
+//Order Status
+Route::get('/admin/order-status','OrderStatusController@index')->name('admin.orderStatus');
+Route::post('/admin/order-status/store', 'OrderStatusController@store')->name('admin.orderStatus.store');
+Route::delete('/admin/order-status/delete/{orderStatus}', 'OrderStatusController@destroy')->name('admin.orderStatus.delete');
+
 
 //User Mgmt
 Route::get('/admin/all-users', 'Admin\UserController@index')->name('admin.all.users');

@@ -2,7 +2,7 @@
 
 @section('content')
 
-<section class="parallax-window" id="home" data-parallax="scroll" data-image-src="img/sub_header_home.jpg" data-natural-width="1400" data-natural-height="550">
+<section class="parallax-window" id="home" data-parallax="scroll" data-image-src="{{ asset('img/bg.jpg') }}" data-natural-width="1400" data-natural-height="">
     <div id="subheader">
         <div id="sub_content">
             <h1>Order <strong id="js-rotating">Takeaway,Delivery,Quick</strong> Food</h1>

@@ -28,12 +28,29 @@
                     </li>
                     <li><a href="{{ route('about-page') }}">About us</a></li>
                     
-                   
+                    @guest
                     <li><a href="#0" data-toggle="modal" data-target="#register">Register</a></li>
                     <li><a href="#0" data-toggle="modal" data-target="#login_2">Login</a></li>
-                   @if(!empty(Auth::user()))
-                <li><a href="#0">Hello {{ Auth::user()->firstname }}</a></li>
-                    @endif
+                    @else
+                    <li class="submenu">
+                            <a id="navbarDropdown" class="show-submenu" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                              Hello {{ Auth::user()->firstname }} <i class="icon-down-open-mini"></i>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                       
+                    @endguest
                 </ul>
             </div><!-- End main-menu -->
             </nav>

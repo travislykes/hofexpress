@@ -18,7 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('/onboard', 'HomeController@onboard')->name('onboard');
+Route::post('/onboard/submit', 'HomeController@onboard_submit')->name('onboard.submit');
 Route::get('/about-us', 'PageController@about_us')->name('about-page');
 
 Route::get('/restaurant/view/{restaurant}', 'RestaurantController@show')->name('restaurant.show');

@@ -70,7 +70,19 @@
                     <div class="col-md-6 col-sm-6">
                         <div class="form-group">
                             <label>Occupation:</label>
-                            <input type="text" id="occupation" name="occupation" class="form-control " placeholder="Occupation">
+                            <input type="text" id="occupation" name="occupation" class="form-control" placeholder="Occupation">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>Gender* :</label>
+                            <select name="gender" required class="form-control">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
                         </div>
                     </div>
                 </div>

@@ -16,7 +16,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
@@ -36,22 +36,24 @@ class HomeController extends Controller
 
     public function onboard_submit(Request $request)
     {
-        $user = Auth::user()->id;
+        $user = Auth::user();
+
         $profile = new Profile;
         $profile->phonenumber = $request->phonenumber;
         $profile->gender = $request->gender;
         $profile->occupation = $request->occupation;
-        $profile->user_id = $user;
+        $profile->user_id = $user->id;
         $profile->save();
 
         $location = new Location;
         $location->name = $request->name;
         $location->houseNumber = $request->houseNumber;
         $location->street = $request->street;
+        $location->user_id = $user->id;
         $location->save();
-        
+
         session()->flash('message', 'Hello'.' '.$user->firstname);
-        return redirect()->route('onboard');
+        return redirect()->route('my-account',[$user->username]);
     }
 
     

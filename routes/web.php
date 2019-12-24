@@ -25,6 +25,9 @@ Route::get('/about-us', 'PageController@about_us')->name('about-page');
 Route::get('/restaurant/view/{restaurant}', 'RestaurantController@show')->name('restaurant.show');
 Route::get('/all-restaurants', 'RestaurantController@index')->name('all.restaurants');
 
+//Logged-in User
+Route::get('/my-account/{username}', 'ProfileController@my_account')->name('my-account');
+
 //Frontend Regster Restaurant Auth\RegisterController@save_frontend_restaurant 
 Route::get('/submit-restaurant','PageController@register_restaurant')->name('submit.restaurant');
 Route::post('/save-restaurant','PageController@save_frontend_restaurant')->name('save.restaurant');

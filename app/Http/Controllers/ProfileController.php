@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Profile;
 use Illuminate\Http\Request;
+use App\User;
+use Auth;
 
 class ProfileController extends Controller
 {
@@ -27,6 +29,12 @@ class ProfileController extends Controller
         //
     }
 
+    public function my_account($username)
+    {
+        $account = User::where('username', $username)->first();
+        $page_title = 'My Account';
+        return view('my-account.index', compact('page_title','account'));
+    }
     /**
      * Store a newly created resource in storage.
      *

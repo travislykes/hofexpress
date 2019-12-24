@@ -51,5 +51,15 @@ class User extends Authenticatable
     public function restaurant()
 	{
 		return $this->belongsTo('App\Restaurant', 'restaurant_id');
+    }
+    
+    public function profile()
+	{
+		return $this->hasOne('App\Profile', 'user_id');
+    }
+    
+    public function locations()
+	{
+		return $this->hasMany('App\Location', 'user_id');
 	}
 }

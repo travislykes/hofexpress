@@ -33,7 +33,7 @@
                     <li><a href="#0" data-toggle="modal" data-target="#login_2">Login</a></li>
                     @else
                     <li class="submenu">
-                            <a id="navbarDropdown" class="show-submenu" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="show-submenu" href="{{ route('my-account', [Auth::user()->username]) }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                               Hello {{ Auth::user()->firstname }} <i class="icon-down-open-mini"></i>
                             </a>
 

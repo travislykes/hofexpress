@@ -6,12 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Location extends Model
+class FeaturedRestaurant extends Model
 {
     use Uuids, SoftDeletes ;
 
-    public function user()
+    public $incrementing = false;
+
+    public function restaurant()
 	{
-		return $this->belongsTo('App\User', 'user_id');
+		return $this->belongsTo('App\Restaurant', 'restaurant_id');
 	}
 }

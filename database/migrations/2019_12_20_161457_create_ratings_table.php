@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLocationsTable extends Migration
+class CreateRatingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateLocationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('locations', function (Blueprint $table) {
+        Schema::create('ratings', function (Blueprint $table) {
             $table->uuid('id');
             $table->primary('id');
+            $table->uuid('restaurant_id');
             $table->uuid('user_id');
-            $table->string('name');
-            $table->string('houseNumber')->nullable();
-            $table->string('street')->nullable();
+            $table->uuid('order_id')->nullable();
+            $table->integer('rating');
+            $table->text('review')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -32,6 +33,6 @@ class CreateLocationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('locations');
+        Schema::dropIfExists('ratings');
     }
 }

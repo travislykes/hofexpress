@@ -19,12 +19,13 @@ class CreateOrdersTable extends Migration
             $table->uuid('user_id');
             $table->uuid('restaurant_id');
             $table->uuid('location_id');
-            $table->uuid('deliveryman_id')->nullable();
+            $table->uuid('rider_id')->nullable();
             $table->double('subtotal')->default(0.00);
             $table->double('delivery_fees')->default(0.00);
             $table->double('total')->default(0.00);
             $table->uuid('order_status_id')->nullable();
-            $table->text('order');
+            $table->uuid('payment_type_id')->nullable();
+            // $table->text('order');
             $table->softDeletes();
             $table->timestamps();
         });

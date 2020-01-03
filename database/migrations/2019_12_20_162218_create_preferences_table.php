@@ -17,14 +17,9 @@ class CreatePreferencesTable extends Migration
             $table->uuid('id');
             $table->primary('id');
             $table->uuid('restaurant_id');
-            $table->string('Monday')->nullable();
-            $table->string('Tuesday')->nullable();
-            $table->string('Wednesday')->nullable();
-            $table->string('Thursday')->nullable();
-            $table->string('Friday')->nullable();
-            $table->string('Saturday')->nullable();
-            $table->string('Sunday')->nullable();
-            $table->string('Holidays')->nullable();
+            $table->string('weekdays')->nullable();
+            $table->string('weekends')->nullable();
+            $table->string('holidays')->nullable();
             $table->double('delivery')->nullable();
             $table->enum('reservationsAllowed',['yes','no'])->default('no');
             $table->softDeletes();

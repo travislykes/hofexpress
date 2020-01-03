@@ -19,6 +19,13 @@
                     <li>
                     <a href="{{ route('all.restaurants') }}" class="">Restaurants</a>
                     </li>
+                    @if(!Auth::guest())
+                        @if(Auth::user()->userType->name == 'Manager' && Auth::user()->ownership_verified == 'yes')
+                        <li>
+                        <a href="{{ route('my.menus') }}" class="">Manage My Restaurant</a>
+                        </li>
+                        @endif
+                    @endif
                     <li class="submenu">
                         <a href="javascript:void(0);" class="show-submenu">Work With Us<i class="icon-down-open-mini"></i></a>
                         <ul>

@@ -10,11 +10,7 @@ use App\Traits\FileUploadTrait;
 class RestaurantController extends Controller
 {
     use FileUploadTrait;
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+  
     public function index()
     {
         $page_title = 'Restaurant Manager';
@@ -24,12 +20,7 @@ class RestaurantController extends Controller
         return view('admin.restaurants.index', compact('restaurants','page_title','restaurantTypes'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+   
     public function store(Request $request)
     {
         // dd($request);
@@ -114,7 +105,7 @@ class RestaurantController extends Controller
         $restaurant->verified = $request->verified;
         $restaurant->restaurant_type_id = $request->restaurant_type_id;
         $restaurant->update();
-        session()->flash('message', 'Updated Created successfully!');
+        session()->flash('message', 'Restaurant Data has been updated successfully!');
         return redirect()->route('admin.restaurants');
     }
 

@@ -19,7 +19,7 @@
                         <div class="box-body">
                             <div class="row">
                                 <div class="col">
-                                    <form novalidate method="POST" action="{{ route('admin.restaurant.store') }}">
+                                    <form novalidate method="POST" action="{{ route('admin.restaurant.update',[$restaurant->id]) }}">
                                         @csrf
                                         @method('PUT')
                                         <div class="row">

@@ -33,6 +33,10 @@ Route::get('/submit-restaurant','PageController@register_restaurant')->name('sub
 Route::post('/save-restaurant','PageController@save_frontend_restaurant')->name('save.restaurant');
 
 //Manager Routes
+Route::get('/my-restaurant/onboard','MyRestaurantController@onboard')->name('res.onboard');
+Route::put('/my-restaurant/onboard-complete/{restaurant}','MyRestaurantController@complete')->name('res.complete');
+Route::get('/my-restaurant/preferences','MyRestaurantController@preferences')->name('res.preferences');
+Route::post('/my-restaurant/preferences-complete','MyRestaurantController@pref_complete')->name('res.pref.complete');
 Route::get('/my-restaurant/menus','MenuController@index')->name('my.menus');
 Route::post('/save-menu','MenuController@store')->name('save.menu');
 Route::get('/my-restaurant/menus/{menu}','MenuController@edit')->name('edit.menu');
@@ -54,6 +58,7 @@ Route::delete('/admin/user-types/delete/{userType}', 'UserTypeController@destroy
 Route::get('/admin/restaurants','Admin\RestaurantController@index')->name('admin.restaurants');
 Route::get('/admin/restaurants/edit/{restaurant}','Admin\RestaurantController@edit')->name('admin.restaurant.edit');
 Route::post('/admin/restaurant/store','Admin\RestaurantController@store')->name('admin.restaurant.store');
+Route::put('/admin/restaurant/update/{restaurant}','Admin\RestaurantController@update')->name('admin.restaurant.update');
 
 
 //Restaurant Types
@@ -74,9 +79,11 @@ Route::delete('/admin/order-status/delete/{orderStatus}', 'OrderStatusController
 
 //User Mgmt
 Route::get('/admin/all-users', 'Admin\UserController@index')->name('admin.all.users');
-Route::get('/admin/all-admin', 'Admin\UserController@admins')->name('admin.all.admins');
-Route::get('/admin/users/customers', 'Admin\UserController@customers')->name('admin.all.customers');
-Route::get('/admin/users/restaurant-managers', 'Admin\UserController@manager')->name('admin.all.managers');
+Route::get('/admin/all-admins', 'Admin\UserController@admins')->name('admin.all.admins');
+Route::get('/admin/all-customers', 'Admin\UserController@customers')->name('admin.all.customers');
+Route::get('/admin/all-managers', 'Admin\UserController@manager')->name('admin.all.managers');
+Route::get('/admin/edit-user/{user}', 'Admin\UserController@edit')->name('admin.edit.user');
+Route::put('/admin/update-user/{user}', 'Admin\UserController@update')->name('admin.update.user');
 
 Route::post('/admin/admin/store', 'Admin\UserController@store')->name('new.admin.store');
 Route::delete('/admin/user/delete/{restaurantType}', 'Admin\UserController@destroy')->name('admin.user.delete');

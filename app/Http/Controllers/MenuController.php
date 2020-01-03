@@ -14,13 +14,29 @@ class MenuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function __construct()
     {
+        $this->middleware('auth');
+        // $this->isAuthorized();
+        
+    }
+
+    private function isAuthorized() {
+        if (!empty(Auth::user()->restaurant_id)) {
+            return abort(403);
+        }
+    }
+
+    public function index()
+    {   
+       
         $page_title = 'My Menus';
         $rid = Auth::user()->restaurant_id;
         $my_restaurant = Restaurant::where('id',$rid)->first();
         $menus = Menu::where('restaurant_id', $rid)->get();
         return view('manager.menus.index', compact('page_title','menus','my_restaurant'));
+       
+       
     }
 
     /**

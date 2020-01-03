@@ -27,20 +27,48 @@ class UserController extends Controller
         $restaurants = Restaurant::all();
         $users = User::all();
         $usertypes = UserType::all();
-        
+        $user = 'Users';
         // dd($restaurants);
-        return view('admin.users.index', compact('restaurants','page_title','users','usertypes'));
+        return view('admin.users.index', compact('restaurants','page_title','users','usertypes','user'));
     }
 
     public function admins()
     {
         $page_title = 'All Admins';
         $restaurants = Restaurant::all();
-        $users = User::all();
+       
         $usertypes = UserType::all();
-        
+        $admin = UserType::where('name', 'Admin')->first();
+        $users = User::where('user_type_id', $admin->id)->get();
+        $user = 'Admins';
         // dd($restaurants);
-        return view('admin.users.index', compact('restaurants','page_title','users','usertypes'));
+        return view('admin.users.index', compact('restaurants','page_title','users','usertypes','user'));
+    }
+
+    public function customers()
+    {
+        $page_title = 'All Customers';
+        $restaurants = Restaurant::all();
+       
+        $usertypes = UserType::all();
+        $admin = UserType::where('name', 'Customer')->first();
+        $users = User::where('user_type_id', $admin->id)->get();
+        $user = 'Customers';
+        // dd($restaurants);
+        return view('admin.users.index', compact('restaurants','page_title','users','usertypes','user'));
+    }
+
+    public function manager()
+    {
+        $page_title = 'All Managers';
+        $restaurants = Restaurant::all();
+       
+        $usertypes = UserType::all();
+        $admin = UserType::where('name', 'Manager')->first();
+        $users = User::where('user_type_id', $admin->id)->get();
+        $user = 'Managers';
+        // dd($restaurants);
+        return view('admin.users.index', compact('restaurants','page_title','users','usertypes','user'));
     }
     /**
      * Store a newly created resource in storage.
@@ -106,11 +134,15 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $page_title = 'Restaurant Manager';
+        $page_title = 'Edit User';
         $restaurants = Restaurant::all();
-        $restaurantTypes = RestaurantType::all();
-
-        return view('admin.restaurants.edit', compact('restaurants','page_title','restaurantTypes','restaurant'));
+       
+        $usertypes = UserType::all();
+        // $admin = UserType::where('name', 'Customer')->first();
+        $users = User::all();
+        // $user = 'Customers';
+        // dd($restaurants);
+        return view('admin.users.edit', compact('restaurants','page_title','users','usertypes','user'));
     }
 
     /**
@@ -125,17 +157,16 @@ class UserController extends Controller
         $user->firstname = $request->firstname;
         $user->lastname = $request->lastname;
         $user->email = $request->email;
-        //create user name with Slug function
-        $slug = new Slug;
-        $name = $request->firstname.' '.$request->lastname.''.rand(100,999);
-        $username = $slug->createUsername($name);
-        $user->username = $username;
+       
         $user->user_type_id = $request->user_type_id;
-        $user->restaurant_type_id = $request->restaurant_type_id;
-        $user->password = Hash::make('Secret1234$$');
+
+        if(isset($request->ownership_verified)){
+            $user->ownership_verified = $request->ownership_verified;
+        }
+        
         $user->update();
         session()->flash('message', 'Updated successfully!');
-        return redirect()->route('admin.restaurants');
+        return redirect()->route('admin.all.users');
     }
 
     /**

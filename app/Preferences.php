@@ -10,6 +10,7 @@ class Preferences extends Model
 {
     use Uuids, SoftDeletes ;
 
+    protected $table = 'preferences';
     public $incrementing = false;
 
     public function restaurant()

@@ -12,42 +12,43 @@
             <div class="col-12">
                 <div class="box">
                     <div class="box-header with-border">
-                        <h4 class="box-title">Add New User</h4>
-                        <h6 class="box-subtitle">Roles Assigned On Site <a class="text-warning" href="#">Hof Express </a></h6>
+                        <h4 class="box-title">Edit User</h4>
+                        <h6 class="box-subtitle">{{ ucfirst($user->firstname) }}<a class="text-warning" href="#">Hof Express </a></h6>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
                         <div class="row">
                             <div class="col">
-                                <form novalidate method="POST" action="{{ route('new.admin.store') }}">
+                                <form novalidate method="POST" action="{{ route('admin.update.user',[$user->id]) }}">
+                                    @method('PUT')
                                     @csrf
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <h5>Firstname<span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <input type="text" name="firstname" class="form-control" required data-validation-required-message="This field is required" placeholder="Firstname"> </div>
+                                                    <input type="text" name="firstname" class="form-control" required data-validation-required-message="This field is required" placeholder="Firstname" value="{{ $user->firstname }}"> </div>
                                                 
                                             </div>
                                             <div class="form-group">
                                                 <h5>Lastname<span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <input type="text" name="lastname" class="form-control" required data-validation-required-message="This field is required" placeholder="Lastname"> </div>
+                                                    <input type="text" name="lastname" class="form-control" required data-validation-required-message="This field is required" placeholder="Lastname" value="{{ $user->lastname }}"> </div>
                                                 
                                             </div>
                                             <div class="form-group">
                                                 <h5>Email<span class="text-danger">*</span></h5>
                                                 <div class="controls">
-                                                    <input type="email" name="email" class="form-control" required data-validation-required-message="This field is required" placeholder="Email"> </div>
+                                                    <input type="email" name="email" class="form-control" required data-validation-required-message="This field is required" placeholder="Email" value="{{ $user->email }}"> </div>
                                                 
                                             </div>
                                              <div class="form-group">
                                                 <h5>User Type</h5>
                                                 <div class="controls">
-                                                    <select type="text" name="user_type_id" class="form-control"  data-validation-required-message="This field is required" minlength="6" placeholder="Description">
+                                                    <select type="text" name="user_type_id" class="form-control">
                                                         <option value="">Select One</option>
                                                         @forelse($usertypes as $ut)
-                                                        <option value="{{ $ut->id }}">{{ $ut->name }}</option>
+                                                        <option value="{{ $ut->id }}" @if($user->user_type_id == $ut->id ) {{ 'selected'  }} @endif>{{ $ut->name }}</option>
                                                         @empty 
                                                         <option value="">No Record Found</option>
                                                         @endforelse
@@ -55,13 +56,28 @@
                                                 </div>
                                                 
                                             </div>
-                                           
+                                            @if($user->userType->name == 'Manager')
+                                            <div class="form-group">
+                                                <h5>Ownership Verified</h5>
+                                                <div class="controls">
+                                                    <select type="text" name="ownership_verified" class="form-control">
+                                                       
+                                                       
+                                                        <option value="no" @if($user->ownership_verified == "no" ) {{ 'selected' }} @endif>No</option>
+                                                        <option value="yes" @if($user->ownership_verified == "yes" ) {{ 'selected' }} @endif>Yes</option>
+                                                       
+                                                       
+                                                    </select>
+                                                </div>
+                                                
+                                            </div>
+                                           @endif
                                         </div>
                                         
                                     </div>
                                    
                                     <div class="text-xs-right">
-                                        <button type="submit" class="btn btn-sm btn-info">Submit</button>
+                                        <button type="submit" class="btn btn-sm btn-success">Update</button>
                                     </div>
                                 </form>
                                 
@@ -78,7 +94,7 @@
         <div class="col-xl-8 col-lg-8 col-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <h4 class="box-title">All {{ $user ?? '' }} </h4>
+                    <h4 class="box-title">{{ $user->firstname ?? '' }} </h4>
                     <h6 class="box-subtitle">List of all user accounts</h6>
                 </div>
                 <div class="box-body p-15">

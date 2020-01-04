@@ -73,9 +73,11 @@
                     <th>
                          Price
                     </th>
+                    <th></th>
                     <th>
                          Order
                     </th>
+                    
                 </tr>
                 </thead>
                 <tbody>
@@ -84,17 +86,31 @@
                     <td>
                         <figure class="thumb_menu_list"><img src="{{ asset('restaurant/food') }}/{{ $it->image }}" alt="thumb"></figure>
                         <h5>{{ $it->name }}</h5>
+                        <input type="hidden" value="{{ $it->id }}" class="form-control" required name="food_id[]" readonly>
                         <p>
                            {{ $it->description }}
                         </p>
                     </td>
                     <td>
                         <strong>€ {{ number_format($it->price,2) }}</strong>
+                        <input type="hidden" value="{{ $it->price }}" class="form-control" required name="price[]" readonly>
                     </td>
-                    <td class="options">
-                    <div class="dropdown dropdown-options">
-                        <a  class="" role="button" type="submit"><i class="icon_plus_alt2"></i></a>
+                    
+                    <td style=" width: 30%;"><div class="input-group number-spinner">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
+                        </span>
+                        <input type="text" class="form-control text-center" value="1" style="height: 34px;" name="quantity[]">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
+                        </span>
                     </div>
+                    </td>
+
+                    <td class="options">
+                        <div class="dropdown dropdown-options">
+                            <a  class="" role="button" type="submit"><i class="icon_plus_alt2"></i></a>
+                        </div>
                     </td>
                     @empty
                     <td>No Record Found</td>
@@ -184,7 +200,7 @@
                 </tr>
                 <tr>
                     <td class="total">
-                         TOTAL <span class="pull-right">$66</span>
+                         TOTAL <span class="pull-right"><input id="total" style=" width: 30%;" name="total" type="number" class="form-control" placeholder="Total" min="2"  step="0.001" readonly></span>
                     </td>
                 </tr>
                 </tbody>
@@ -200,4 +216,25 @@
 <!-- End Content =============================================== -->
 
 
+@endsection
+
+@section('scripts')
+<script text="javascript">
+    $(document).on('click', '.number-spinner button', function () {    
+	var btn = $(this),
+		oldValue = btn.closest('.number-spinner').find('input').val().trim(),
+		newVal = 0;
+	
+	if (btn.attr('data-dir') == 'up') {
+		newVal = parseInt(oldValue) + 1;
+	} else {
+		if (oldValue > 1) {
+			newVal = parseInt(oldValue) - 1;
+		} else {
+			newVal = 1;
+		}
+	}
+	btn.closest('.number-spinner').find('input').val(newVal);
+});
+</script>
 @endsection

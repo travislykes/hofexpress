@@ -23,9 +23,9 @@
     </div><!-- End subheader -->
     <div id="count" class="hidden-xs">
         <ul>
-            <li><span class="number">2650</span> Restaurant</li>
+            <li><span class="number">46</span> Restaurant</li>
             <li><span class="number">5350</span> People Served</li>
-            <li><span class="number">12350</span> Registered Users</li>
+            <li><span class="number">300</span> Cuisines To Choose</li>
         </ul>
     </div>
     </section><!-- End section -->
@@ -80,7 +80,7 @@
         </div><!-- End row -->
         
         <div id="delivery_time" class="hidden-xs">
-            <strong><span>2</span><span>5</span></strong>
+            <strong><span>1</span><span>5</span></strong>
             <h4>The minutes that usually takes to deliver!</h4>
         </div>
         </div><!-- End container -->
@@ -237,15 +237,15 @@
         </div><!-- End container -->
         </div><!-- End white_bg -->
         
-       <div class="high_light">
+       <div class="high_light" style="background: #000;">
       	<div class="container">
-      		<h3>Choose from over 2,000 Restaurants</h3>
+      		<h3>Choose from over 20 Restaurants in Hof</h3>
             <p>Ridiculus sociosqu cursus neque cursus curae ante scelerisque vehicula.</p>
-            <a href="list_page.html">View all Restaurants</a>
+            <a href="{{ route('all.restaurants') }}">View all Restaurants</a>
         </div><!-- End container -->
       </div><!-- End hight_light -->
             
-    <section class="parallax-window" data-parallax="scroll" data-image-src="img/bg_office.jpg" data-natural-width="1200" data-natural-height="600">
+    <section class="parallax-window" data-parallax="scroll" data-image-src="{{ asset('img/img1.jpg') }}" data-natural-width="1200" data-natural-height="600">
     <div class="parallax-content">
         <div class="sub_content">
             <i class="icon_mug"></i>
@@ -267,16 +267,16 @@
         </div>
       	<div class="row">
             <div class="col-md-4 col-md-offset-2">
-            	<a class="box_work" href="submit_restaurant.html">
-                <img src="img/submit_restaurant.jpg" width="848" height="480" alt="" class="img-responsive">
+            	<a class="box_work" href="{{ route('submit.restaurant') }}">
+                <img src="{{ asset('img/restaurant.jpg') }}" width="848" height="480" alt="" class="img-responsive">
                 <h3>Submit your Restaurant<span>Start to earn customers</span></h3>
                 <p>Lorem ipsum dolor sit amet, ut virtute fabellas vix, no pri falli eloquentiam adversarium. Ea legere labore eam. Et eum sumo ocurreret, eos ei saepe oratio omittantur, legere eligendi partiendo pro te.</p>
                 <div class="btn_1">Read more</div>
                 </a>
             </div>
             <div class="col-md-4">
-            	<a class="box_work" href="submit_driver.html">
-                <img src="img/delivery.jpg" width="848" height="480" alt="" class="img-responsive">
+            	<a class="box_work" href="{{ route('view.rider.form') }}">
+                <img src="{{ asset('img/rider.jpg') }}" width="848" height="480" alt="" class="img-responsive">
 				<h3>We are looking for a Driver<span>Start to earn money</span></h3>
                 <p>Lorem ipsum dolor sit amet, ut virtute fabellas vix, no pri falli eloquentiam adversarium. Ea legere labore eam. Et eum sumo ocurreret, eos ei saepe oratio omittantur, legere eligendi partiendo pro te.</p>
                 <div class="btn_1">Read more</div>

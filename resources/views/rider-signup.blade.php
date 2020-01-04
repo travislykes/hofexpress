@@ -139,7 +139,7 @@
                 <ul class="list_ok">
                     <li>A bicycle or scooter/motorbike with relevant safety equipment (road safety is a huge must for us!).</li>
                     <li>Smartphone - iPhone 4s or above or Android 4.3 or above.</li>
-                    <li>The right to work in the USA.</li>
+                    <li>The right to work in the Germany.</li>
                 </ul>
             </div>
         </div>

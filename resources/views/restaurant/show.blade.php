@@ -6,7 +6,7 @@
 <section class="parallax-window" data-parallax="scroll" data-image-src="{{ asset('restaurant/cover') }}/{{ $restaurant->cover_image ?? '' }}" data-natural-width="1400" data-natural-height="">
     <div id="subheader">
         <div id="sub_content">
-            <div id="thumb"><img src="{{ asset('restaurant/logos') }}/{{ $restaurant->logo ?? '' }}" alt=""></div>
+            <div id="thumb"><a href="{{ route('restaurant.detail',[$restaurant->id]) }}"><img src="{{ asset('restaurant/logos') }}/{{ $restaurant->logo ?? '' }}" alt=""></a></div>
             <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> ( <small><a href="#0">98 reviews</a></small> )</div>
             <h1>{{ ucwords($restaurant->name) }}</h1>
             <div><em>{{ ucwords($restaurant->restaurantType->name ?? '') }}</em></div>

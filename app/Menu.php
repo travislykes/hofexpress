@@ -16,5 +16,10 @@ class Menu extends Model
     public function restaurant()
 	{
 		return $this->belongsTo('App\Restaurant', 'restaurant_id');
+    }
+    
+    public function food()
+	{
+		return $this->hasMany('App\Food', 'menu_id');
 	}
 }

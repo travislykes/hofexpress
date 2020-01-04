@@ -65,15 +65,15 @@
             <div class="col-md-4 col-sm-3">
                 <h3>Secure payments with</h3>
                 <p>
-                    <img src="img/cards.png" alt="" class="img-responsive">
+                    <img src="{{ asset('img/cards.png') }}" alt="" class="img-responsive">
                 </p>
             </div>
             <div class="col-md-3 col-sm-3">
                 <h3>About</h3>
                 <ul>
-                    <li><a href="about.html">About us</a></li>
-                    <li><a href="faq.html">Faq</a></li>
-                    <li><a href="contacts.html">Contacts</a></li>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Faq</a></li>
+                    <li><a href="#">Contacts</a></li>
                     <li><a href="#0" data-toggle="modal" data-target="#login_2">Login</a></li>
                     <li><a href="#0" data-toggle="modal" data-target="#register">Register</a></li>
                     <li><a href="#0">Terms and conditions</a></li>

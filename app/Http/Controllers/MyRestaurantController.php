@@ -90,7 +90,7 @@ class MyRestaurantController extends Controller
             return view('manager.restaurant.preferences', compact('my_rest','page_title','restaurantTypes','rid'));
         }
         
-       }
+    }
 
     public function pref_complete(Request $request)
     {

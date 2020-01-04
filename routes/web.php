@@ -22,7 +22,9 @@ Route::get('/onboard', 'HomeController@onboard')->name('onboard');
 Route::post('/onboard/submit', 'HomeController@onboard_submit')->name('onboard.submit');
 Route::get('/about-us', 'PageController@about_us')->name('about-page');
 
-Route::get('/restaurant/view/{restaurant}', 'RestaurantController@show')->name('restaurant.show');
+
+Route::get('/restaurant/{restaurant}', 'RestaurantController@view')->name('restaurant.show');
+Route::get('/restaurant/view/{restaurant}', 'RestaurantController@show')->name('restaurant.detail');
 Route::get('/all-restaurants', 'RestaurantController@index')->name('all.restaurants');
 
 //Logged-in User
@@ -43,6 +45,8 @@ Route::get('/my-restaurant/menus/{menu}','MenuController@edit')->name('edit.menu
 Route::put('/update-menu/{menu}','MenuController@update')->name('update.menu');
 Route::delete('/delete-menu/{menu}','MenuController@destroy')->name('delete.menu');
 
+Route::get('/my-restaurant/foods', 'FoodController@index')->name('food.index');
+Route::post('/my-restaurant/save-food', 'FoodController@store')->name('food.store');
 //Frontend Regster Delivery Man 
 Route::get('/rider-signup','PageController@rider')->name('view.rider.form');
 Route::post('/save-rider','PageController@save_rider')->name('save.rider');

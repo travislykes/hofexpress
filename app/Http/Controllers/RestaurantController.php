@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Restaurant;
 use Illuminate\Http\Request;
+use App\Menu;
+use App\RestaurantType;
+use App\Food;
+use App\Preferences;
 
 class RestaurantController extends Controller
 {
@@ -49,7 +53,20 @@ class RestaurantController extends Controller
     public function show(Restaurant $restaurant)
     {
         $page_title = ucfirst($restaurant->name);
-        return view('restaurant.details', compact('page_title','restaurant','page_title'));
+        $food = Food::where('restaurant_id', $restaurant->id)->get();
+        $menu = Menu::where('restaurant_id', $restaurant->id)->get();
+        $pref = Preferences::where('restaurant_id', $restaurant->id)->first();
+        return view('restaurant.details', compact('page_title','restaurant','page_title','menu','food','pref'));
+    }
+
+    public function view(Restaurant $restaurant)
+    {
+        // $restaurant = Restaurant::where('slug', $slug)->first();
+        $page_title = ucfirst($restaurant->name);
+        $food = Food::where('restaurant_id', $restaurant->id)->get();
+        $menu = Menu::where('restaurant_id', $restaurant->id)->get();
+        $pref = Preferences::where('restaurant_id', $restaurant->id)->first();
+        return view('restaurant.show', compact('page_title','restaurant','page_title','menu','food','pref'));
     }
 
     /**

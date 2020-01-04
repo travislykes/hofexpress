@@ -106,42 +106,6 @@
 					</div> --}}
 				</div>
 			</div><!--End tools -->
-        
-			<div class="strip_list wow fadeIn" data-wow-delay="0.1s">
-				<div class="ribbon_1">
-					Featured
-				</div>
-				<div class="row">
-					<div class="col-md-9 col-sm-9">
-						<div class="desc">
-							<div class="thumb_strip">
-								<a href="detail_page.html"><img src="img/thumb_restaurant.jpg" alt=""></a>
-							</div>
-							<div class="rating">
-								<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> (<small><a href="#0">98 reviews</a></small>)
-							</div>
-							<h3>Taco Mexican</h3>
-							<div class="type">
-								Mexican / American
-							</div>
-							<div class="location">
-								135 Newtownards Road, Belfast, BT4. <span class="opening">Opens at 17:00.</span> Minimum order: $15
-							</div>
-							<ul>
-								<li>Take away<i class="icon_check_alt2 ok"></i></li>
-								<li>Delivery<i class="icon_check_alt2 no"></i></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-md-3 col-sm-3">
-						<div class="go_to">
-							<div>
-								<a href="detail_page.html" class="btn_1">View Menu</a>
-							</div>
-						</div>
-					</div>
-				</div><!-- End row-->
-			</div><!-- End strip_list-->
             
             @forelse($restaurants as $restaurant)
 			<div class="strip_list wow fadeIn" data-wow-delay="0.2s">
@@ -211,40 +175,9 @@
 				</div><!-- End row-->
 			</div><!-- End strip_list-->
             @endforelse
-			<div class="strip_list wow fadeIn" data-wow-delay="0.4s">
-				<div class="row">
-					<div class="col-md-9 col-sm-9">
-						<div class="desc">
-							<div class="thumb_strip">
-								<a href="detail_page.html"><img src="img/thumb_restaurant_4.jpg" alt=""></a>
-							</div>
-							<div class="rating">
-								<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> (<small><a href="#0">98 reviews</a></small>)
-							</div>
-							<h3>Sushi Gold</h3>
-							<div class="type">
-								Sushi / Japanese
-							</div>
-							<div class="location">
-								135 Newtownards Road, Belfast, BT4. <span class="opening">Opens at 17:00.</span> Minimum order: $15
-							</div>
-							<ul>
-								<li>Take away<i class="icon_check_alt2 ok"></i></li>
-								<li>Delivery<i class="icon_check_alt2 ok"></i></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-md-3 col-sm-3">
-						<div class="go_to">
-							<div>
-								<a href="detail_page.html" class="btn_1">View Menu</a>
-							</div>
-						</div>
-					</div>
-				</div><!-- End row-->
-			</div><!-- End strip_list-->
+			
             
-			<div class="strip_list wow fadeIn" data-wow-delay="0.5s">
+			{{-- <div class="strip_list wow fadeIn" data-wow-delay="0.5s">
 				<div class="row">
 					<div class="col-md-9 col-sm-9">
 						<div class="desc">
@@ -308,7 +241,7 @@
 						</div>
 					</div>
 				</div><!-- End row-->
-			</div><!-- End strip_list-->
+			</div><!-- End strip_list--> --}}
             <a href="#0" class="load_more_bt wow fadeIn" data-wow-delay="0.2s">Load more...</a>  
 		</div><!-- End col-md-9-->
         

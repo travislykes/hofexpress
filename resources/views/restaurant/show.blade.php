@@ -83,33 +83,33 @@
                 <tbody>
                 <tr>
                     @forelse($mn->food as $it)
-                    <td>
+                    <td class="first-col">
                         <figure class="thumb_menu_list"><img src="{{ asset('restaurant/food') }}/{{ $it->image }}" alt="thumb"></figure>
-                        <h5>{{ $it->name }}</h5>
-                        <input type="hidden" value="{{ $it->id }}" class="form-control" required name="food_id[]" readonly>
+                        <h5 class="item-name">{{ $it->name }}</h5>
+                        <input type="hidden"  value="{{ $it->id }}" class="form-control item-id" required name="food_id[]" readonly>
                         <p>
                            {{ $it->description }}
                         </p>
                     </td>
-                    <td>
-                        <strong>€ {{ number_format($it->price,2) }}</strong>
-                        <input type="hidden" value="{{ $it->price }}" class="form-control" required name="price[]" readonly>
+                    <td class="second-col" >
+                        <strong class=>€ {{ number_format($it->price,2) }}</strong>
+                        <input type="hidden"  value="{{ $it->price }}" class="form-control    item-price" required name="price[]" readonly>
                     </td>
                     
-                    <td style=" width: 30%;"><div class="input-group number-spinner">
+                    <td style=" width: 30%;" class="third-col"><div class="input-group number-spinner">
                         <span class="input-group-btn">
                             <button class="btn btn-default" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
                         </span>
-                        <input type="text" class="form-control text-center" value="1" style="height: 34px;" name="quantity[]">
+                        <input type="text" class="form-control text-center item-qty" value="1" style="height: 34px;" name="quantity[]">
                         <span class="input-group-btn">
                             <button class="btn btn-default" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
                         </span>
                     </div>
                     </td>
 
-                    <td class="options">
+                    <td class="options" >
                         <div class="dropdown dropdown-options">
-                            <a  class="" role="button" type="submit"><i class="icon_plus_alt2"></i></a>
+                            <a  class="" role="button" type="submit"><i class="icon_plus_alt2 add"></i></a>
                         </div>
                     </td>
                     @empty
@@ -132,79 +132,12 @@
             <div id="cart_box" >
                 <h3>Your order <i class="icon_cart_alt pull-right"></i></h3>
                 <table class="table table_summary">
-                <tbody>
-                <tr>
-                    <td>
-                        <a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong>1x</strong> Enchiladas
-                    </td>
-                    <td>
-                        <strong class="pull-right">$11</strong>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong>2x</strong> Burrito
-                    </td>
-                    <td>
-                        <strong class="pull-right">$14</strong>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong>1x</strong> Chicken
-                    </td>
-                    <td>
-                        <strong class="pull-right">$20</strong>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong>2x</strong> Corona Beer
-                    </td>
-                    <td>
-                        <strong class="pull-right">$9</strong>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong>2x</strong> Cheese Cake
-                    </td>
-                    <td>
-                        <strong class="pull-right">$12</strong>
-                    </td>
-                </tr>
-                </tbody>
-                </table>
-                <hr>
-                <div class="row" id="options_2">
-                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
-                        <label><input type="radio" value="" checked name="option_2" class="icheck">Delivery</label>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
-                        <label><input type="radio" value="" name="option_2" class="icheck">Take Away</label>
-                    </div>
-                </div><!-- Edn options 2 -->
+                <tbody id="order-list" >
                 
-                <hr>
-                <table class="table table_summary">
-                <tbody>
-                <tr>
-                    <td>
-                         Subtotal <span class="pull-right">$56</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                         Delivery fee <span class="pull-right">$10</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="total">
-                         TOTAL <span class="pull-right"><input id="total" style=" width: 30%;" name="total" type="number" class="form-control" placeholder="Total" min="2"  step="0.001" readonly></span>
-                    </td>
-                </tr>
                 </tbody>
                 </table>
+                
+                
                 <hr>
                 <a class="btn_full" href="cart.html">Order now</a>
             </div><!-- End cart_box -->
@@ -236,5 +169,182 @@
 	}
 	btn.closest('.number-spinner').find('input').val(newVal);
 });
+</script>
+
+<script>
+		// Constructor
+function Item(id, name, price, qty) {
+    this.identifier = id;
+    this.name = name;
+    this.price = price;
+    this.qty = qty;
+}
+
+const shoppingCart = {
+    cart: [],
+    // Add to cart
+    addItemToCart: function(id, name, price, qty) {
+        let record = this.cart.find(item => item.name == name);
+
+        if (record) {
+            (record.qty = qty), (record.price = price);
+        } else {
+            let item = new Item(id, name, price, qty);
+            this.cart.push(item);
+        }
+        this.saveCart();
+    },
+
+    // Remove item from cart
+    removeItemFromCart: function(name) {
+        let item = this.cart.find(item => {
+            return item.name == name;
+        });
+        this.cart.splice(this.cart.indexOf(item), 1);
+        this.saveCart();
+    },
+    // Load cart
+    loadCart: function() {
+        if (
+            localStorage.getItem("shoppingCart") &&
+            localStorage.getItem("shoppingCart") != null
+        ) {
+            return (this.cart = JSON.parse(
+                localStorage.getItem("shoppingCart")
+            ));
+        }
+        return [];
+    },
+
+    // Save cart
+    saveCart: function() {
+        localStorage.setItem("shoppingCart", JSON.stringify(this.cart));
+    },
+
+    clearCart: function() {
+        this.cart = [];
+        localStorage.setItem("shoppingCart", JSON.stringify(this.cart));
+        return this.cart;
+    }
+};
+
+
+/**
+ * Load the cart and update the number of item in  cart
+ */
+function doShowAll() {
+    //var keys =  Object.keys(localStorage)
+    const cart = shoppingCart.loadCart();
+    return cart;
+}
+
+function clearCart() {
+    const cart = shoppingCart.clearCart();
+    return cart;
+}
+
+//init shopping cart
+	doShowAll()
+
+	showProducts();
+
+	let addButtons = document.querySelectorAll('.add');
+	addButtons.forEach(btn=>{
+		btn.addEventListener('click', (event)=>{
+			let parentCol = event.currentTarget.parentNode.parentNode.parentNode
+			
+			let firstCol = getPreviousSibling(parentCol, '.first-col')
+			let firstColChildren = firstCol.children
+			let itemName = '';
+			let itemIdentifier =''
+			for (let i = 0; i < firstColChildren.length; i++) {
+				if(firstColChildren[i].className == 'item-name'){
+					 itemName = firstColChildren[i].textContent
+					
+				 }else if(firstColChildren[i].classList.contains("item-id")){
+					 itemIdentifier = firstColChildren[i].value
+				}
+
+			}
+
+			let secondCol = getPreviousSibling(parentCol, '.second-col')
+			let secondColChildren = secondCol.children
+			let itemPrice = ''
+			for (let j = 0; j < secondColChildren.length; j++) {
+				if(secondColChildren[j].classList.contains('item-price')){
+					 itemPrice = secondColChildren[j].value
+						break
+				}
+
+			}
+
+			let thirdCol = getPreviousSibling(parentCol, '.third-col')
+			let thirdColChildren = thirdCol.firstChild.children
+			let itemQty = ''
+			for (let i = 0; i < thirdColChildren.length; i++) {
+				if(thirdColChildren[i].classList.contains('item-qty')){
+					 itemQty = thirdColChildren[i].value
+						break
+				}
+			}
+
+			shoppingCart.addItemToCart(itemIdentifier ,itemName, itemPrice, itemQty)
+			showProducts();
+
+		})
+	})
+
+	function showProducts(){
+		const orderList = document.querySelector('#order-list');
+		let cart = doShowAll()
+		
+		let output =""
+		let total = 0
+
+		for(let item of cart){
+			
+			let subTotal = parseFloat(item.price) * parseInt(item.qty)
+			total += subTotal
+
+			output += `<tr><td><strong>${item.qty}x </strong>` + item.name + `<td>
+					<strong class="pull-right">${item.qty * item.price}</strong>
+			</td>` + `<input type="hidden" value=${item.identifier} name="identifier" >` +  `<input type="hidden" value=${item.qty} name="qty" >` +`<input type="hidden" value=${item.price} name="itemPrice" > </td></tr>`
+			
+		}
+
+		output += `<hr>
+                <tr>
+									<td class="total">
+												TOTAL <span class="pull-right"> ${total} 
+												<input id="total" style=" width: 30%;" name="total" type="hidden" class="form-control" placeholder="Total" min="2" value=${total} step="0.001" readonly></span>
+									</td>
+                </tr>`
+
+		orderList.innerHTML = output
+	
+	}
+
+
+	let getPreviousSibling = function (elem, selector) {
+
+		// Get the next sibling element
+		let sibling = elem.previousElementSibling;
+		
+		// If there's no selector, return the first sibling
+		if (!selector) return sibling;
+
+		// If the sibling matches our selector, use it
+		// If not, jump to the next sibling and continue the loop
+		while (sibling) {
+			
+			if (sibling.matches(selector)) return sibling;
+			sibling = sibling.previousElementSibling
+			
+		}
+
+	};
+
+
+	
 </script>
 @endsection

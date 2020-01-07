@@ -63,13 +63,13 @@
                                             <div class="form-group">
                                                 <h5>Restaurant Logo</h5>
                                                 <div class="controls">
-                                                    <input type="file" name="logo" class="form-control" required>
+                                                    <input type="file" name="logo" class="form-control" >
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <h5>Cover Image</h5>
                                                 <div class="controls">
-                                                    <input type="file" name="cover_image" class="form-control" required>
+                                                    <input type="file" name="cover_image" class="form-control" >
                                                 </div>
                                             </div>
 

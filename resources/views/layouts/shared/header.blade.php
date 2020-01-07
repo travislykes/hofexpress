@@ -22,7 +22,7 @@
                     @if(!Auth::guest())
                         @if(Auth::user()->userType->name == 'Manager' && Auth::user()->ownership_verified == 'yes')
                         <li>
-                        <a href="{{ route('my.menus') }}" class="">Manage My Restaurant</a>
+                        <a href="{{ route('res.onboard') }}" class="">Manage My Restaurant</a>
                         </li>
                         @endif
                     @endif

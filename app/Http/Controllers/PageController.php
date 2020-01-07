@@ -102,6 +102,7 @@ class PageController extends Controller
     public function register_restaurant(){
         $page_title = 'Submit Your Restaurant';
         $restaurant_types = RestaurantType::all();
+        // dd( $restaurant_types);
         return view('submit-restaurant', compact('page_title','restaurant_types'));
     }
 

@@ -30,7 +30,7 @@ class MyRestaurantController extends Controller
             return view('manager.restaurant.onboard', compact('my_rest','page_title','restaurantTypes'));
         }
         else{
-            return redirect('my.menus');
+            return redirect()->route('my.menus');
         }
        }
 

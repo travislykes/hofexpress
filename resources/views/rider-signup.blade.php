@@ -4,11 +4,11 @@
 <link href="{{ asset('css/skins/square/grey.css') }}" rel="stylesheet">
 @endsection
 @section('content')
-<section class="parallax-window" id="short" data-parallax="scroll" data-image-src="img/sub_header_cart.jpg" data-natural-width="1400" data-natural-height="350">
+<section class="parallax-window" id="short" data-parallax="scroll" data-image-src="{{ asset('img/rider2.jpg') }}" data-natural-width="1400" data-natural-height="">
     <div id="subheader">
         <div id="sub_content">
-            <h1>Work with us</h1>
-            <p>Qui debitis meliore ex, tollit debitis conclusionemque te eos.</p>
+            <h1>Rider Sign Up</h1>
+            <p>become a rider for hofexpress</p>
             <p></p>
         </div><!-- End sub_content -->
     </div><!-- End subheader -->
@@ -19,8 +19,8 @@
     <div class="container">
         <ul>
             <li><a href="#0">Home</a></li>
-            <li><a href="#0">Category</a></li>
-            <li>Page active</li>
+            <li><a href="#0">Work With Us</a></li>
+            <li>Rider Sign Up</li>
         </ul>
         <a href="#0" class="search-overlay-menu-btn"><i class="icon-search-6"></i> Search</a>
     </div>
@@ -52,7 +52,7 @@
     <div class="main_title margin_mobile">
         <h2 class="nomargin_top">Please submit the form below</h2>
         <p>
-            Cum doctus civibus efficiantur in imperdiet deterruisset.
+            All fields are required
         </p>
     </div>
     <div class="row">

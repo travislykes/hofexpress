@@ -12,114 +12,47 @@
 
         <!-- Sample menu definition -->
         <ul id="main-menu" class="sm sm-blue">
-          <li><a href="#"><i class="ti-dashboard mx-5"></i>DASHBOARD</a>
-              <ul>
-                  <li><a href="../index.html">Material</a></li>
-                  <li><a href="../index-2.html">e-Commerce</a></li>
-                  <li><a href="../index-3.html">Analytics</a></li>
-                  <li><a href="../index-4.html">Hospital</a></li>
-                  <li><a href="../index-5.html">Real Estate</a></li>
-                  <li><a href="../index-6.html">University</a></li>
-                  <li><a href="../index-7.html">Campaign</a></li>
-              </ul>
+          @if(Auth::user()->userType->name == 'Manager')
+          {{-- <li><a href="#"><i class="ti-dashboard mx-5"></i>DASHBOARD</a>
+             
+          </li> --}}
+          <li><a href="{{ route('my.menus') }}"><i class="ti-files mx-5"></i>MENUS</a>
+             
           </li>
-          <li><a href="#" class="current"><i class="ti-files mx-5"></i>LAYOUT</a>
-              <ul>
-                  <li><a href="layout_boxed.html">Boxed</a></li>
-                  <li><a href="layout_fixed.html" class="current">Fixed</a></li>
-              </ul>
+          <li><a href="#" ><i class="ti-files mx-5"></i>ORDERS</a>
+             
           </li>
-          <li><a href="#"><i class="ti-layout-grid2 mx-5"></i>APPS</a>			
+          <li><a href="{{ route('food.index') }}"><i class="ti-layout-grid2 mx-5"></i>FOOD</a>			
+           	  
+          </li>
+          <li><a href="{{ route('res.preferences') }}"><i class="ti-pencil-alt mx-5"></i>PREFERENCES</a></li>
+          <li><a href="{{ route('restaurant.show',[Auth::user()->restaurant->id]) }}" target="_blank"><i class="ti-pencil-alt mx-5"></i>VIEW RESTAURANT</a></li> 
+        
+          @elseif(Auth::user()->userType->name == 'Admin')
+          {{-- if admnin --}}
+
+          <li><a href="{{ route('admin.dashboard') }}"><i class="ti-dashboard mx-5"></i>DASHBOARD</a></li>
+          <li><a href="{{ route('admin.restaurants') }}"><i class="ti-dashboard mx-5"></i>ALL RESTAURANTS</a></li>
+          {{-- <li><a href="#"><i class="ti-dashboard mx-5"></i>DASHBOARD</a></li> --}}
+          <li><a href="#"><i class="ti-shopping-cart mx-5"></i>SETTINGS</a>
             <ul>
-              <li><a href="mailbox.html">Mailbox</a></li>
-              <li><a href="#">Contact</a>
-                <ul>
-                  <li><a href="contact_app_chat.html">Chat app</a></li>
-                  <li><a href="contact_app.html">Contact / Employee</a></li>
-                  <li><a href="contact_userlist_grid.html">Userlist Grid</a></li>
-                  <li><a href="contact_userlist.html">Userlist</a></li>
-                </ul>			  
-              </li>
-              <li><a href="#">Extra</a>
-                <ul>
-                  <li><a href="extra_app_ticket.html">Support Ticket</a></li>
-                  <li><a href="extra_calendar.html">Calendar</a></li>
-                  <li><a href="extra_profile.html">Profile</a></li>
-                  <li><a href="extra_taskboard.html">Project DashBoard</a></li>
-                </ul>			  
-              </li>
-            </ul>		  
+              <li><a href="{{ route('admin.payment.types') }}">Payment Types</a></li>
+              <li><a href="{{ route('admin.orderStatus') }}">Order Status</a></li>
+            </ul>
           </li>
-          <li><a href="#"><i class="ti-pencil-alt mx-5"></i>UI & WIDGETS</a>
+          <li><a href="#"><i class="ti-shopping-cart mx-5"></i>USERS</a>
             <ul>
-              <li><a href="#">UI Elements</a>			  
-                <ul>
-                  <li><a href="ui_badges.html">Badges</a></li>
-                  <li><a href="ui_border_utilities.html">Border</a></li>
-                  <li><a href="ui_buttons.html">Buttons</a></li>	
-                  <li><a href="ui_color_utilities.html">Color</a></li>
-                  <li><a href="ui_dropdown.html">Dropdown</a></li>
-                  <li><a href="ui_dropdown_grid.html">Dropdown Grid</a></li>
-                  <li><a href="ui_typography.html">Typography</a></li>
-                  <li><a href="ui_progress_bars.html">Progress Bars</a></li>
-                  <li><a href="ui_grid.html">Grid</a></li>
-                  <li><a href="ui_ribbons.html">Ribbons</a></li>
-                  <li><a href="ui_sliders.html">Sliders</a></li>
-                  <li><a href="ui_tab.html">Tabs</a></li>
-                  <li><a href="ui_timeline.html">Timeline</a></li>
-                  <li><a href="ui_timeline_horizontal.html">Horizontal Timeline</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Icons</a>			  
-                <ul>
-                  <li><a href="icons_fontawesome.html">Font Awesome</a></li>
-                  <li><a href="icons_glyphicons.html">Glyphicons</a></li>
-                  <li><a href="icons_material.html">Material Icons</a></li>	
-                  <li><a href="icons_themify.html">Themify Icons</a></li>
-                  <li><a href="icons_simpleline.html">Simple Line Icons</a></li>
-                  <li><a href="icons_cryptocoins.html">Cryptocoins Icons</a></li>
-                  <li><a href="icons_flag.html">Flag Icons</a></li>
-                  <li><a href="icons_weather.html">Weather Icons</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Components</a>			  
-                <ul>
-                  <li><a href="component_bootstrap_switch.html">Bootstrap Switch</a></li>
-                  <li><a href="component_date_paginator.html">Date Paginator</a></li>
-                  <li><a href="component_media_advanced.html">Advanced Medias</a></li>
-                  <li><a href="component_modals.html">Modals</a></li>
-                  <li><a href="component_nestable.html">Nestable</a></li>
-                  <li><a href="component_notification.html">Notification</a></li>
-                  <li><a href="component_portlet_draggable.html">Draggable Portlets</a></li>
-                  <li><a href="component_sweatalert.html">Sweet Alert</a></li>
-                  <li><a href="component_rangeslider.html">Range Slider</a></li>
-                  <li><a href="component_rating.html">Ratings</a></li>
-                  <li><a href="component_animations.html">Animations</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Box Cards</a>			  
-                <ul>
-                  <li><a href="box_cards.html">User Card</a></li>
-                  <li><a href="box_advanced.html">Advanced Card</a></li>
-                  <li><a href="box_basic.html">Basic Card</a></li>
-                  <li><a href="box_color.html">Card Color</a></li>
-                  <li><a href="box_group.html">Card Group</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Widgets</a>			  
-                <ul>
-                  <li><a href="widgets_blog.html">Blog</a></li>
-                  <li><a href="widgets_chart.html">Chart</a></li>
-                  <li><a href="widgets_list.html">List</a></li>
-                  <li><a href="widgets_social.html">Social</a></li>
-                  <li><a href="widgets_statistic.html">Statistic</a></li>
-                  <li><a href="widgets_weather.html">Weather</a></li>
-                  <li><a href="widgets.html">Widgets</a></li>
-                </ul>
-              </li>
-            </ul>		  	
+              <li><a href="{{ route('admin.all.users') }}">All Users</a></li>
+              <li><a href="{{ route('admin.all.admins') }}">Admins</a></li>
+              <li><a href="{{ route('admin.all.managers') }}">Managers</a></li>
+              <li><a href="{{ route('admin.all.customers') }}">Customers</a></li>
+            </ul>
           </li>
-          <li><a href="#"><i class="ti-write mx-5"></i>FORMS & TABLES</a>
+          {{-- Admin End --}}
+          @else 
+
+          @endif
+          {{-- <li><a href="#"><i class="ti-write mx-5"></i>FORMS & TABLES</a>
             <ul>
               <li><a href="#">Forms</a>
                 <ul>
@@ -253,7 +186,7 @@
                 </ul>
               </li>
             </ul>
-          </li>
+          </li> --}}
         </ul>
       </nav>
       <!-- Header Navbar -->
@@ -267,7 +200,7 @@
                 </div>
             </li>			
             <!-- Messages -->
-            <li class="dropdown messages-menu">
+            {{-- <li class="dropdown messages-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Messages">
                 <i class="mdi mdi-email"></i>
               </a>
@@ -366,9 +299,9 @@
                     <a href="#" class="bg-light">See all e-Mails</a>
                 </li>
               </ul>
-            </li>
+            </li> --}}
             <!-- Notifications -->
-            <li class="dropdown notifications-menu">
+            {{-- <li class="dropdown notifications-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Notifications">
                 <i class="mdi mdi-bell"></i>
               </a>
@@ -431,7 +364,7 @@
                     <a href="#" class="bg-light">View all</a>
                 </li>
               </ul>
-            </li>	
+            </li>	 --}}
             <!-- User Account-->
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="User">
@@ -468,9 +401,9 @@
                 </a> 
             </li>
             <!-- Control Sidebar Toggle Button -->
-            <li>
+            {{-- <li>
               <a href="#" data-toggle="control-sidebar" title="Setting"><i class="fa fa-cog fa-spin"></i></a>
-            </li>
+            </li> --}}
           </ul>
         </div>
       </nav>

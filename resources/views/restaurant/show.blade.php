@@ -81,9 +81,10 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+               
                     @forelse($mn->food as $it)
-                    <td class="first-col">
+                    <tr>
+                    <td class="first-col" width="35%">
                         <figure class="thumb_menu_list"><img src="{{ asset('restaurant/food') }}/{{ $it->image }}" alt="thumb"></figure>
                         <h5 class="item-name">{{ $it->name }}</h5>
                         <input type="hidden"  value="{{ $it->id }}" class="form-control item-id" required name="food_id[]" readonly>
@@ -96,7 +97,7 @@
                         <input type="hidden"  value="{{ $it->price }}" class="form-control    item-price" required name="price[]" readonly>
                     </td>
                     
-                    <td style=" width: 30%;" class="third-col"><div class="input-group number-spinner">
+                    <td style=" width: 28%;" class="third-col"><div class="input-group number-spinner">
                         <span class="input-group-btn">
                             <button class="btn btn-default" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
                         </span>
@@ -112,10 +113,13 @@
                             <a  class="" role="button" type="submit"><i class="icon_plus_alt2 add"></i></a>
                         </div>
                     </td>
-                    @empty
-                    <td>No Record Found</td>
-                    @endforelse
                 </tr>
+                    @empty
+                    <tr>
+                    <td>No Record Found</td>
+                    </tr>
+                    @endforelse
+               
                
                 </tbody>
                 </table>

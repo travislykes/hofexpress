@@ -1,7 +1,7 @@
 <header class="main-header">
     <div class="inside-header clearfix">
       <nav class="main-nav" role="navigation">
-          <h2 class="nav-brand"><a href="#"><img src="{{ asset('admin/images/logo-icon.png') }}" class="max-w-50" alt="Hof Express"></a></h2>
+          <h2 class="nav-brand"><a href="{{ route('index') }}"><img src="{{ asset('/img/logo_2x.png') }}" class="" alt="Hof Express" width="135"></a></h2>
           
           <!-- Mobile menu toggle button (hamburger/x icon) -->
           <button class="topbar-toggler" id="mobile_topbar_toggler"><i class="mdi mdi-dots-horizontal"></i></button>

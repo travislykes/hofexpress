@@ -32,7 +32,7 @@
           {{-- if admnin --}}
 
           <li><a href="{{ route('admin.dashboard') }}"><i class="ti-dashboard mx-5"></i>DASHBOARD</a></li>
-          <li><a href="{{ route('admin.restaurants') }}"><i class="ti-dashboard mx-5"></i>ALL RESTAURANTS</a></li>
+          <li><a href="{{ route('admin.restaurants') }}"><i class="ti-home mx-5"></i>ALL RESTAURANTS</a></li>
           {{-- <li><a href="#"><i class="ti-dashboard mx-5"></i>DASHBOARD</a></li> --}}
           <li><a href="#"><i class="ti-shopping-cart mx-5"></i>SETTINGS</a>
             <ul>
@@ -40,7 +40,7 @@
               <li><a href="{{ route('admin.orderStatus') }}">Order Status</a></li>
             </ul>
           </li>
-          <li><a href="#"><i class="ti-shopping-cart mx-5"></i>USERS</a>
+          <li><a href="#"><i class="ti-user mx-5"></i>USERS</a>
             <ul>
               <li><a href="{{ route('admin.all.users') }}">All Users</a></li>
               <li><a href="{{ route('admin.all.admins') }}">Admins</a></li>

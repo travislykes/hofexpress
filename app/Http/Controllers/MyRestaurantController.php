@@ -8,10 +8,12 @@ use Auth;
 use App\Menu;
 use App\RestaurantType;
 use App\Preferences;
+use App\Traits\FileUploadTrait;
 
 class MyRestaurantController extends Controller
 {
-   
+    use FileUploadTrait;
+
     public function __construct()
     {
         $this->middleware('auth');  
@@ -36,34 +38,60 @@ class MyRestaurantController extends Controller
 
     public function complete(Request $request, Restaurant $restaurant)
     {
-
-        //Upload Logo
-        if ($request->hasFile('logo'))
-        {
+        // dd($restaurant);
+        // if ($request->hasFile('logo'))
+        // {
  
-          $destinationPath = public_path('restaurant/logos'); // upload path
-          $extension = $request->file('logo')->getClientOriginalExtension();
+        //   $destinationPath = public_path('restaurant/logos'); // upload path
+        //   $extension = $request->file('logo')->getClientOriginalExtension();
  
-          $logo = rand(11111111, 99999999) . '.' . $extension;
+        //   $logo = rand(11111111, 99999999) . '.' . $extension;
  
-          $request->file('logo')->move($destinationPath, $logo); // uploading file to given path
+        //   $request->file('logo')->move($destinationPath, $logo); // uploading file to given path
             
-          $restaurant->logo = $logo;
+        //   $restaurant->logo = $logo;
         
-        }
-        //Upload Cover Image
-        if ($request->hasFile('cover_image'))
-        {
+        // }
+        // //Upload Cover Image
+        // if ($request->hasFile('cover_image'))
+        // {
  
-          $destinationPath = public_path('restaurant/cover'); 
-          $extension = $request->file('cover_image')->getClientOriginalExtension();
+        //   $destinationPath = public_path('restaurant/cover'); 
+        //   $extension = $request->file('cover_image')->getClientOriginalExtension();
  
-          $cover_image = rand(11111111, 99999999) . '.' . $extension;
+        //   $cover_image = rand(11111111, 99999999) . '.' . $extension;
  
-          $request->file('cover_image')->move($destinationPath, $cover_image); // uploading file to given path
+        //   $request->file('cover_image')->move($destinationPath, $cover_image); // uploading file to given path
  
-          $restaurant->cover_image = $cover_image;
-        }
+        //   $restaurant->cover_image = $cover_image;
+        // }
+        //Upload Logo
+        // if ($request->hasFile('logo'))
+        // {
+ 
+        //   $destinationPath = public_path('restaurant/logos'); // upload path
+        //   $extension = $request->file('logo')->getClientOriginalExtension();
+ 
+        //   $logo = rand(11111111, 99999999) . '.' . $extension;
+ 
+        //   $request->file('logo')->move($destinationPath, $logo); // uploading file to given path
+            
+        //   $restaurant->logo = $logo;
+        
+        // }
+        // //Upload Cover Image
+        // if ($request->hasFile('cover_image'))
+        // {
+ 
+        //   $destinationPath = public_path('restaurant/cover'); 
+        //   $extension = $request->file('cover_image')->getClientOriginalExtension();
+ 
+        //   $cover_image = rand(11111111, 99999999) . '.' . $extension;
+ 
+        //   $request->file('cover_image')->move($destinationPath, $cover_image); // uploading file to given path
+ 
+        //   $restaurant->cover_image = $cover_image;
+        // }
 
         $restaurant->name = $request->name;
         $restaurant->description = $request->description;
@@ -72,7 +100,7 @@ class MyRestaurantController extends Controller
         $restaurant->restaurant_type_id = $request->restaurant_type_id;
         $restaurant->update();
         session()->flash('message', 'Restaurant Data has been updated successfully!');
-        return redirect()->route('my.preferences');
+        return redirect()->route('res.preferences');
     }
 
     public function preferences()

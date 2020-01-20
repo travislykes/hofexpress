@@ -24,6 +24,10 @@
                         <li>
                         <a href="{{ route('res.onboard') }}" class="">Manage My Restaurant</a>
                         </li>
+                        @elseif(Auth::user()->userType->name == 'Admin')
+                        <li>
+                        <a href="{{ route('admin.dashboard') }}" class="">Admin Dashboard</a>
+                        </li>
                         @endif
                     @endif
                     <li class="submenu">

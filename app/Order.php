@@ -43,7 +43,7 @@ class Order extends Model
     public function food()
     {
 
-    return $this->belongsToMany('App\Food', 'food_order', 'food_id', 'order_id');
+    return $this->belongsToMany('App\Food', 'food_order')->withPivot( 'quantity') ->withTimestamps();;
     
     }
 }

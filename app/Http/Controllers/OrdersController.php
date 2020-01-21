@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use App\Order;
+use App\Restaurant;
+use App\OrderStatus;
 
 class OrdersController extends Controller
 {
@@ -34,7 +38,20 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $status = OrderStatus::where('name','new')->first();
+        $order = new Order;
+
+        $order->user_id = Auth::user()->id;
+        $order->status = $status;
+        $order->total = $request->total;
+       // dd($request->identifier);
+        for ($i = 0; $i < count($request->identifier); $i++) {
+            $order->food()->attach([$request->identifier[$i] => ['quantity' => $request->qty[$i]]]);
+        }
+        // $order->food()->attach();
+        $order->save();
+        return redirect()->route('my-account');
     }
 
     /**

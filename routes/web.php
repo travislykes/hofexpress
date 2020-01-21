@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('index');
+Route::get('/', 'PageController@index')->name('index');
 
 Auth::routes();
 
@@ -29,6 +27,9 @@ Route::get('/all-restaurants', 'RestaurantController@index')->name('all.restaura
 
 //Logged-in User
 Route::get('/my-account/{username}', 'ProfileController@my_account')->name('my-account');
+
+//Create Order
+Route::post('/new-order', 'OrdersController@store')->name('new.order');
 
 //Frontend Regster Restaurant Auth\RegisterController@save_frontend_restaurant 
 Route::get('/submit-restaurant','PageController@register_restaurant')->name('submit.restaurant');

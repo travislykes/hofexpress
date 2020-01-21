@@ -7,7 +7,7 @@
     <div id="subheader">
     	<div id="sub_content">
     	 <h1>About us</h1>
-         <p>Qui debitis meliore ex, tollit debitis conclusionemque te eos.</p>
+         <p>get to know about us and the team</p>
          <p></p>
         </div><!-- End sub_content -->
 	</div><!-- End subheader -->
@@ -18,8 +18,7 @@
         <div class="container">
             <ul>
                 <li><a href="#0">Home</a></li>
-                <li><a href="#0">Category</a></li>
-                <li>Page active</li>
+                <li>About Us</li>
             </ul>
             <a href="#0" class="search-overlay-menu-btn"><i class="icon-search-6"></i> Search</a>
         </div>

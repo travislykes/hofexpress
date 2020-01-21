@@ -39,60 +39,33 @@ class MyRestaurantController extends Controller
     public function complete(Request $request, Restaurant $restaurant)
     {
         // dd($restaurant);
-        // if ($request->hasFile('logo'))
-        // {
+        if ($request->hasFile('logo'))
+        {
  
-        //   $destinationPath = public_path('restaurant/logos'); // upload path
-        //   $extension = $request->file('logo')->getClientOriginalExtension();
+          $destinationPath = public_path('restaurant/logos'); // upload path
+          $extension = $request->file('logo')->getClientOriginalExtension();
  
-        //   $logo = rand(11111111, 99999999) . '.' . $extension;
+          $logo = rand(11111111, 99999999) . '.' . $extension;
  
-        //   $request->file('logo')->move($destinationPath, $logo); // uploading file to given path
+          $request->file('logo')->move($destinationPath, $logo); // uploading file to given path
             
-        //   $restaurant->logo = $logo;
+          $restaurant->logo = $logo;
         
-        // }
-        // //Upload Cover Image
-        // if ($request->hasFile('cover_image'))
-        // {
+        }
+        //Upload Cover Image
+        if ($request->hasFile('cover_image'))
+        {
  
-        //   $destinationPath = public_path('restaurant/cover'); 
-        //   $extension = $request->file('cover_image')->getClientOriginalExtension();
+          $destinationPath = public_path('restaurant/cover'); 
+          $extension = $request->file('cover_image')->getClientOriginalExtension();
  
-        //   $cover_image = rand(11111111, 99999999) . '.' . $extension;
+          $cover_image = rand(11111111, 99999999) . '.' . $extension;
  
-        //   $request->file('cover_image')->move($destinationPath, $cover_image); // uploading file to given path
+          $request->file('cover_image')->move($destinationPath, $cover_image); // uploading file to given path
  
-        //   $restaurant->cover_image = $cover_image;
-        // }
-        //Upload Logo
-        // if ($request->hasFile('logo'))
-        // {
- 
-        //   $destinationPath = public_path('restaurant/logos'); // upload path
-        //   $extension = $request->file('logo')->getClientOriginalExtension();
- 
-        //   $logo = rand(11111111, 99999999) . '.' . $extension;
- 
-        //   $request->file('logo')->move($destinationPath, $logo); // uploading file to given path
-            
-        //   $restaurant->logo = $logo;
-        
-        // }
-        // //Upload Cover Image
-        // if ($request->hasFile('cover_image'))
-        // {
- 
-        //   $destinationPath = public_path('restaurant/cover'); 
-        //   $extension = $request->file('cover_image')->getClientOriginalExtension();
- 
-        //   $cover_image = rand(11111111, 99999999) . '.' . $extension;
- 
-        //   $request->file('cover_image')->move($destinationPath, $cover_image); // uploading file to given path
- 
-        //   $restaurant->cover_image = $cover_image;
-        // }
-
+          $restaurant->cover_image = $cover_image;
+        }
+       
         $restaurant->name = $request->name;
         $restaurant->description = $request->description;
         $restaurant->location = $request->location;

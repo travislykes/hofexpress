@@ -135,6 +135,8 @@
         <div class="theiaStickySidebar">
             <div id="cart_box" >
                 <h3>Your order <i class="icon_cart_alt pull-right"></i></h3>
+            <form method="POST" action="{{ route('new.order') }}">
+                    @csrf
                 <table class="table table_summary">
                 <tbody id="order-list" >
                 
@@ -143,7 +145,15 @@
                 
                 
                 <hr>
-                <a class="btn_full" href="cart.html">Order now</a>
+                @if(!(Auth::user()))
+                <span style="text-align: center;">Login Before You Can Order</span>
+                <hr>
+                @endif
+                <button class="btn_full" type="submit" @if(!(Auth::user()))
+                disabled
+                @endif>Order Now</button>
+
+                </form>
             </div><!-- End cart_box -->
             </div><!-- End theiaStickySidebar -->
         </div><!-- End col-md-3 -->
@@ -312,7 +322,7 @@ function clearCart() {
 
 			output += `<tr><td><strong>${item.qty}x </strong>` + item.name + `<td>
 					<strong class="pull-right">${item.qty * item.price}</strong>
-			</td>` + `<input type="hidden" value=${item.identifier} name="identifier" >` +  `<input type="hidden" value=${item.qty} name="qty" >` +`<input type="hidden" value=${item.price} name="itemPrice" > </td></tr>`
+			</td>` + `<input type="hidden" value=${item.identifier} name="identifier[]" >` +  `<input type="hidden" value=${item.qty} name="qty[]" >` +`<input type="hidden" value=${item.price} name="itemPrice[]" > </td></tr>`
 			
 		}
 

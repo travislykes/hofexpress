@@ -27,7 +27,9 @@ Route::get('/all-restaurants', 'RestaurantController@index')->name('all.restaura
 
 //Logged-in User
 Route::get('/my-account/{username}', 'ProfileController@my_account')->name('my-account');
-
+Route::get('/cart/{order}', 'OrdersController@cart')->name('cart');
+Route::put('/save-order/{order}', 'OrdersController@save_order')->name('save.order');
+Route::get('/order-submitted/{order}', 'OrdersController@completed')->name('order.submitted');
 //Create Order
 Route::post('/new-order', 'OrdersController@store')->name('new.order');
 

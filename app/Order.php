@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
 {
+    public $incrementing = false;
+    
     use Uuids, SoftDeletes ;
 
     public function restaurant()

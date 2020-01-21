@@ -7,6 +7,9 @@ use Auth;
 use App\Order;
 use App\Restaurant;
 use App\OrderStatus;
+use App\PaymentType;
+use App\DeliveryType;
+use App\Location;
 
 class OrdersController extends Controller
 {
@@ -25,9 +28,13 @@ class OrdersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function cart(Order $order)
     {
-        //
+        $page_title = 'Complete Order';
+        $locations = Location::where('user_id', Auth::user()->id)->get();
+        $payment_types = PaymentType::all();
+        $delivery_types = DeliveryType::all();
+        return view('cart',compact('page_title','order','delivery_types','payment_types','locations'));
     }
 
     /**
@@ -43,15 +50,18 @@ class OrdersController extends Controller
         $order = new Order;
 
         $order->user_id = Auth::user()->id;
-        $order->status = $status;
+        $order->order_status_id = $status;
         $order->total = $request->total;
        // dd($request->identifier);
+        
+        // $order->food()->attach();
+        $order->save();
+
         for ($i = 0; $i < count($request->identifier); $i++) {
             $order->food()->attach([$request->identifier[$i] => ['quantity' => $request->qty[$i]]]);
         }
-        // $order->food()->attach();
-        $order->save();
-        return redirect()->route('my-account');
+        // dd($order->id);
+        return redirect()->route('cart',[$order->id]);
     }
 
     /**
@@ -71,9 +81,11 @@ class OrdersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function completed(Order $order)
     {
-        //
+        $page_title = 'Order Completed';
+
+        return view('order-completed',compact('page_title','order'));
     }
 
     /**
@@ -83,9 +95,13 @@ class OrdersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function save_order(Request $request, Order $order)
     {
-        //
+        $order->location_id = $request->location_id;
+        $order->payment_type_id = $request->payment_type_id;
+        $order->delivery_type_id = $request->delivery_type_id;
+        $order->update();
+        return redirect()->route('order.submitted',[$order->id]);
     }
 
     /**
